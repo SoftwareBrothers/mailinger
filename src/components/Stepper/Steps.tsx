@@ -5,6 +5,8 @@ import React from 'react';
 import DrivePicker from 'src/components/DrivePicker';
 import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { StepCtx } from 'src/contexts/step.context';
+import { MailTemplateCtx } from '../../contexts/mail-template.context';
+import { mailContent } from '../../seeds/mail';
 import Editor from '../Editor/Editor';
 import Sender from './../Sender';
 import Navigation from './Navigation';
@@ -12,6 +14,7 @@ import Navigation from './Navigation';
 const Steps = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [spreadsheet, setSpreadsheet] = React.useState(null);
+  const [mailTemplate, setMailTemplate] = React.useState(mailContent);
 
   const steps = [
     { key: 'choose', label: 'Choose' },
@@ -24,7 +27,7 @@ const Steps = () => {
       case 0:
         return <DrivePicker />;
       case 1:
-        return <Editor spreadsheet={spreadsheet} setSpreadsheet={setSpreadsheet} />;
+        return <Editor />;
       case 2:
         return <Sender />;
       default:
@@ -34,21 +37,23 @@ const Steps = () => {
 
   return (
     <SpreadsheetCtx.Provider value={[spreadsheet, setSpreadsheet]}>
-      <StepCtx.Provider value={[activeStep, setActiveStep]}>
-        <Stepper
-          alternativeLabel={true}
-          nonLinear={true}
-          activeStep={activeStep}
-        >
-          {steps.map(step => (
-            <Step key={step.key}>
-              <StepButton>{step.label}</StepButton>
-            </Step>
-          ))}
-        </Stepper>
-        {getComponent()}
-        <Navigation />
-      </StepCtx.Provider>
+      <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
+        <StepCtx.Provider value={[activeStep, setActiveStep]}>
+          <Stepper
+            alternativeLabel={true}
+            nonLinear={true}
+            activeStep={activeStep}
+          >
+            {steps.map(step => (
+              <Step key={step.key}>
+                <StepButton>{step.label}</StepButton>
+              </Step>
+            ))}
+          </Stepper>
+          {getComponent()}
+          <Navigation />
+        </StepCtx.Provider>
+      </MailTemplateCtx.Provider>
     </SpreadsheetCtx.Provider>
   );
 };

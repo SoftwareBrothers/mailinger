@@ -22,7 +22,7 @@ function transformSpreadsheetData(data: any) {
   const variables = valuesWithoutEmpties[4];
   const rawUsers = valuesWithoutEmpties.slice(
     5,
-    valuesWithoutEmpties.length - 1,
+    valuesWithoutEmpties.length,
   );
 
   const usersWithVars = rawUsers.map((userValues: any) => {
@@ -59,6 +59,7 @@ const pickerOnChange = (
     )
       .then(response => response.json())
       .then(responseData => {
+        console.log('rawData', responseData);
         const transformed = transformSpreadsheetData(responseData);
         setSpreadsheet(transformed);
         console.log(transformed);

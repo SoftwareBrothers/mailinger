@@ -17,6 +17,8 @@ function App() {
     removeUser();
   }
 
+  console.log('App')
+
   return (
     <UserCtx.Provider value={[user, setUser, removeUser]}>
       <div>

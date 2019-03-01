@@ -2,7 +2,6 @@ import Grid from '@material-ui/core/Grid';
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
-import { mailContent } from 'src/seeds/mail';
 
 import React, { Component } from 'react';
 import { ISpreadsheet } from 'src/types/spreadsheet';
@@ -12,27 +11,21 @@ import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { MailTemplateCtx } from 'src/contexts/mail-template.context';
+import { replaceVars } from '../utils';
 
-const replaceVars = (input: string, spreadsheet: any) => {
-    return input.replace(/\[(.*?)\]/g, (match, p1) => {
-      if (spreadsheet && spreadsheet.usersData) {
-        return spreadsheet.usersData[0][p1]
-      }
-      return match;
-    })
-  }
 
 const editor = () => {
+  const [mailTemplate, setMailTemplate] = React.useContext(MailTemplateCtx);
   const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
-  const [editor, setEditor] = React.useState(EditorState.createWithContent(stateFromHTML(mailContent)));
-  const [preview, setPreview] = React.useState(replaceVars(mailContent, spreadsheet));
+  const [editor, setEditor] = React.useState(EditorState.createWithContent(stateFromHTML(mailTemplate)));
+  const [preview, setPreview] = React.useState(replaceVars(mailTemplate, spreadsheet));
 
   const onChange = (data: any) => {
-      // editor: data,
       setEditor(data);
-      setPreview(
-        replaceVars(stateToHTML(data.getCurrentContent()), spreadsheet)
-      )
+      const previewValue = replaceVars(stateToHTML(data.getCurrentContent()), spreadsheet)
+      setPreview(previewValue);
+      setMailTemplate(previewValue);
   }
 
   const toolbarOptions = {

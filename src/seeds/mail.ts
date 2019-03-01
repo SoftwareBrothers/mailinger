@@ -1,12 +1,21 @@
 export const mailContent = `
-Cześć Tadek,
-
-Kwota za styczeń, po uwzględnieniu potrącenia za:
-- angielski 64zł
-- enelmed 100zł
-- multisport 100 zł
-- 2 dni na zwolnieniu chorobowym 200 zł
-wynosi 1000 zł netto / 1230 zł brutto.
-
+Cześć [imie_nazwisko],
+<br>
+<br>
+Kwota za [miesiac], po uwzględnieniu potrącenia za:
+<br>
+<br>
+- angielski [angielski]
+<br>
+- enelmed [enelmed]
+<br>
+- multisport [multisport]
+<br>
+- [chorobowe_dni] na zwolnieniu chorobowym [chrbowe_kwota]
+<br>
+<br>
+wynosi [kwota_netto] netto / [kwota_brutto] brutto.
+<br>
+<br>
 Proszę o jak najszybsze wysłanie faktury
 `;

@@ -19,7 +19,11 @@ function transformSpreadsheetData(data: any) {
   const rawUsers = valuesWithoutEmpties.slice(5, valuesWithoutEmpties.length - 1);
 
   const usersWithVars = rawUsers.map((user: any) => {
+<<<<<<< HEAD
     const transformedUserObject = { title };
+=======
+    const transformedUserObject = {};
+>>>>>>> master
     user.map((userValue: any, index: number) => {
       if (variables[index]) {
         transformedUserObject[variables[index]] = userValue || '0'
@@ -29,6 +33,10 @@ function transformSpreadsheetData(data: any) {
   });
 
   return {
+<<<<<<< HEAD
+=======
+    title,
+>>>>>>> master
     usersData: usersWithVars,
     variables,
   }

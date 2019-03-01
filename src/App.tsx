@@ -22,7 +22,7 @@ function App() {
       <div>
         <Bar />
       </div>
-      {user ? <Editor /> : null}
+      { user ? <Editor /> : null }
     </UserCtx.Provider>
   );
 }

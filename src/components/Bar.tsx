@@ -7,6 +7,7 @@ import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import { UserCtx } from '../contexts/user.context';
 
 import Login from './Auth/Login';
 import Hello from './Hello';
@@ -26,14 +27,11 @@ const styles = createStyles({
 
 export interface IProps extends WithStyles<typeof styles> { }
 
-export const UserCtx = React.createContext(null as any);
-
 const ButtonAppBar = (props: IProps) => {
   const { classes } = props;
-  const [user, setUser] = React.useState(null as any);
+  const [user] = React.useContext(UserCtx);
 
   return (
-    <UserCtx.Provider value={[user, setUser]}>
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
@@ -51,8 +49,6 @@ const ButtonAppBar = (props: IProps) => {
           </Toolbar>
         </AppBar>
       </div>
-    </UserCtx.Provider>
-
   );
 };
 

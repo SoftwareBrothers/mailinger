@@ -1,6 +1,6 @@
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import { UserCtx } from './Bar';
+import { UserCtx } from '../contexts/user.context';
 
 const Hello = () => {
   const [user] = React.useContext(UserCtx);

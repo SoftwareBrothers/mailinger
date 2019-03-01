@@ -4,7 +4,7 @@ import {IUser} from "../types";
 const headers = {
   common: {
     'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'content=text/html charset=UTF-8'
+    'Content-Type': 'text/html; charset="UTF-8"'
   }
 };
 

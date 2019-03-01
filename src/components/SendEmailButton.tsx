@@ -12,8 +12,8 @@ const SendEmailButton = () => {
     const recipients: IRecipient[] = [
       {
         data: {
-          content: 'Masz te swoje 20k.',
-          title: 'Wystaw fakturę',
+          content: 'Masz te swoje 60k. Tutaj wyświetlam jakieś polskie znaki, na przykład w słowie żółć.',
+          subject: 'Wystaw fakturę',
         },
         email: 'pawel.lorenc@rst-it.com',
         firstName: 'Paweł',
@@ -21,8 +21,8 @@ const SendEmailButton = () => {
       },
       {
         data: {
-          content: 'Masz te swoje 30k.',
-          title: 'Wystaw fakturę',
+          content: 'Masz te swoje 60k. Tutaj wyświetlam jakieś polskie znaki, na przykład w słowie żółć.',
+          subject: 'Wystaw fakturę',
         },
         email: 'marek.firlejczyk@rst-it.com',
         firstName: 'Marek',
@@ -30,8 +30,8 @@ const SendEmailButton = () => {
       },
       {
         data: {
-          content: 'Masz te swoje 40k.',
-          title: 'Wystaw fakturę',
+          content: 'Masz te swoje 60k. Tutaj wyświetlam jakieś polskie znaki, na przykład w słowie żółć.',
+          subject: 'Wystaw fakturę',
         },
         email: 'szymon.poltorak@rst-it.com',
         firstName: 'Szymon',

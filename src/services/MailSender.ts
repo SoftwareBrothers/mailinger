@@ -1,22 +1,43 @@
 import axios from 'axios';
+import base64url from "base64url";
 import {IUser} from "../types";
 import {IRecipient} from "../types/recipient";
 
 const send = (recipients: IRecipient[], user: IUser) => {
-  console.log(recipients);
-  console.log(user);
 
-  const data = 'RnJvbTogcGF3ZWwubG9yZW5jQHJzdC1pdC5jb20KVG86ICBtYXJlay5maXJsZWpjenlrQHJzdC1pdC5jb20KU3ViamVjdDogU3ViamVjdCBUZXh0CgpUaGUgbWVzc2FnZSB0ZXh0IGdvZXMgaGVyZQ==';
+  for (const recipient of recipients) {
 
-  axios.post('https://www.googleapis.com/gmail/v1/users/me/messages/send',
-    { raw: data},
-    { headers: {'Authorization': 'Bearer '+user.token.accessToken} }
+    const messageId = new Date().getUTCMilliseconds();
+
+    const webSafe64 = (base64: any) => {
+      return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    };
+
+    const stream = `From: ${user.firstName} ${user.lastName} <${user.email}>
+To: ${recipient.firstName} ${recipient.lastName} <${recipient.email}>
+Reply-To: <${user.email}>
+Message-ID: ${messageId}
+Date: ${messageId}
+Subject: ${recipient.data.subject}
+    
+${recipient.data.content}`;
+
+    const data = webSafe64(base64url(stream));
+
+    axios.post('https://www.googleapis.com/gmail/v1/users/me/messages/send',
+      {raw: data},
+      {headers:
+          {'Authorization': 'Bearer ' + user.token.accessToken}
+      }
     )
-    .then(res => {
+      .then(res => {
         console.log(res);
-    }).catch((error) => {
+      }).catch((error) => {
       console.log(error);
-  });
+    });
+
+  }
+
 };
 
 export default send;

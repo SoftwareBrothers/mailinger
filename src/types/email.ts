@@ -1,4 +1,4 @@
 export interface IEmailMeta {
-  title: string;
+  subject: string;
   content: string;
 }

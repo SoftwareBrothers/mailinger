@@ -4,7 +4,8 @@ import {UserCtx} from "../contexts/user.context";
 import send from '../services/MailSender';
 import {IRecipient} from "../types/recipient";
 
-const SendEmailButton = () => {
+const SendEmailButton = ({ rcps }) => {
+  console.log(rcps);
 
   const [user] = React.useContext(UserCtx);
 
@@ -21,7 +22,7 @@ const SendEmailButton = () => {
       }
     ];
 
-    send(recipients, user);
+    send(rcps, user);
   };
 
   return (

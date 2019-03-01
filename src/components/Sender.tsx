@@ -26,7 +26,7 @@ const Sender = () => {
 
   return (
     <Grid item={true} xs={12} style={{ textAlign: 'center' }}>
-      <SendEmailButton />
+      <SendEmailButton rcps={dataToSend}/>
     </Grid>
   );
 };

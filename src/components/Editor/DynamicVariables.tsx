@@ -8,7 +8,6 @@ const DynamicVariables = () => {
   const [spreadsheet] = React.useContext(SpreadsheetCtx);
   const variables: string[] = (spreadsheet && spreadsheet.variables) || ['imie', 'miesiac', 'kwota_netto'];
 
-  console.log(variables);
   if (!variables.length) {
     return null;
   }

@@ -5,14 +5,19 @@ import {IRecipient} from "../types/recipient";
 export default (recipient: IRecipient, user: IUser) => {
 
   const messageId = new Date().getUTCMilliseconds();
-  const subject = Base64.encodeURI(recipient.data.subject);
+  const userFullName = user.firstName + ' ' + user.lastName;
+  const recipientFullName = recipient.firstName + ' ' + recipient.lastName;
 
-  return `From: ${user.firstName} ${user.lastName} <${user.email}>
-To: ${recipient.firstName} ${recipient.lastName} <${recipient.email}>
+  const encode = (text: any) => {
+    return '=?utf-8?B?' + Base64.encodeURI(text) + '?=';
+  }
+
+  return `From: ${encode(userFullName)} <${user.email}>
+To: ${encode(recipientFullName)} <${recipient.email}>
 Reply-To: <${user.email}>
 Message-ID: ${messageId}
 Date: ${messageId}
-Subject: =?utf-8?B?${subject}?=
+Subject: ${encode(recipient.data.subject)}
 Content-Type: text/html; charset="UTF-8"
 
 ${recipient.data.content}`;

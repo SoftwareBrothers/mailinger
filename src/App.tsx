@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Bar from './components/Bar';
-import Editor from './components/Template/Editor';
+import Editor from './components/Editor/Editor';
 import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
 import { createUserFromLocalStorage, IUser } from './types';

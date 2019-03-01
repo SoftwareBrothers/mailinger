@@ -35,6 +35,15 @@ const editor = () => {
       )
   }
 
+  const toolbarOptions = {
+    inline: { inDropdown: true },
+    list: { inDropdown: true },
+    textAlign: { inDropdown: true },
+    link: { inDropdown: true },
+    history: { inDropdown: true },
+    embedded: { inDropdown: false}
+  }
+
   return (
     <div style={{ padding: 20 }}>
       <Grid>
@@ -45,6 +54,7 @@ const editor = () => {
           wrapperClassName="wrapperClassName"
           editorClassName="lepszy-edytor-wrapper"
           onEditorStateChange={onChange}
+          toolbar={toolbarOptions}
         />
       </Grid>
       <h3>Preview</h3>

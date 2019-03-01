@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Bar from './components/Bar';
+import Editor from './components/Editor/Editor';
 import SendEmailButton from "./components/SendEmailButton";
 import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
@@ -23,6 +24,7 @@ function App() {
         <Bar />
         <SendEmailButton />
       </div>
+      { user ? <Editor /> : null }
     </UserCtx.Provider>
   );
 }

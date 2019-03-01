@@ -25,6 +25,18 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@ckeditor/ckeditor5-build-classic@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-12.0.0.tgz#0a738809ee5d45be7bf18a474b73cb15902ba871"
+  integrity sha512-BdD7+u3obrWuPC2kxG/JBXBrtohfPbCzLrNOYE0ITe7qokqmzvfY4WAMwPuI2wBwbuHzuPeGJCnWvjQZgtRZoQ==
+
+"@ckeditor/ckeditor5-react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-1.1.1.tgz#432a8510636190b90bbf2090c4be5f6be14fda0e"
+  integrity sha512-5BB15RU4aAg8axKiHqZQTtCgTxuRl2N+EyA/rLBnb7/RikElwRvFEGgMPciwBAPFGY26Y++Ln0M2zFcjRCRx+Q==
+  dependencies:
+    prop-types "^15.6.1"
+
 "@material-ui/core@^3.9.2":
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.9.2.tgz#41ed1a470e981d199829eb5d9317a671c66a6f7d"
@@ -84,6 +96,11 @@
     "@babel/runtime" "^7.2.0"
     prop-types "^15.6.0"
     react-is "^16.6.3"
+
+"@types/ckeditor@^4.9.7":
+  version "4.9.7"
+  resolved "https://registry.yarnpkg.com/@types/ckeditor/-/ckeditor-4.9.7.tgz#b637e7aea0b99b3ec588f89e3c31f933f29527b8"
+  integrity sha512-SbD4kRVAHZIFkH8Y8/iUxElcnDFsjKqzyu+3aOjLa0/4jCWZmHwZa5/C2hROvO9gKTZcCPzmGcAxl49StshahA==
 
 "@types/jest-diff@*":
   version "20.0.1"
@@ -153,11 +170,6 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
-
-"@types/utf8@^2.1.6":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@types/utf8/-/utf8-2.1.6.tgz#430cabb71a42d0a3613cce5621324fe4f5a25753"
-  integrity sha512-pRs2gYF5yoKYrgSaira0DJqVg2tFuF+Qjp838xS7K+mJyY2jJzjsrl6y17GbIa4uMRogMbxs+ghNCvKg6XyNrA==
 
 abab@^1.0.3:
   version "1.0.4"
@@ -5224,6 +5236,11 @@ load-json-file@^2.0.0:
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
+load-script@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
+  integrity sha1-BJGTngvuVkPuSUp+PaPSuscMbKQ=
+
 loader-runner@^2.3.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -5804,11 +5821,6 @@ node-pre-gyp@^0.10.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
-
-nodemailer@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-5.1.1.tgz#0c48d1ecab02e86d9ff6c620ee75ed944b763505"
-  integrity sha512-hKGCoeNdFL2W7S76J/Oucbw0/qRlfG815tENdhzcqTpSjKgAN91mFOqU2lQUflRRxFM7iZvCyaFcAR9noc/CqQ==
 
 nopt@^4.0.1:
   version "4.0.1"
@@ -6727,7 +6739,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.6.0:
+prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6962,6 +6974,13 @@ react-google-login@^5.0.2:
   dependencies:
     "@types/react" "*"
     prop-types "^15.6.0"
+
+react-google-picker@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-google-picker/-/react-google-picker-0.1.0.tgz#f8a5a3ff7f48c99d1be35071f28a17d136ec0953"
+  integrity sha512-0y3TtinsdNwEx77Upsmh7Q4bXuBt/d/KntQDNxLOIf2v77UQQi0FBYAtAkjrkP28IOX7gfcXhdY5XXZRGHSODw==
+  dependencies:
+    load-script "^1.0.0"
 
 react-is@^16.6.3, react-is@^16.7.0:
   version "16.8.3"
@@ -8570,11 +8589,6 @@ utf8@^2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/utf8/-/utf8-2.1.2.tgz#1fa0d9270e9be850d9b05027f63519bf46457d96"
   integrity sha1-H6DZJw6b6FDZsFAn9jUZv0ZFfZY=
-
-utf8@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
-  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 util-deprecate@~1.0.1:
   version "1.0.2"

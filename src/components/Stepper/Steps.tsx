@@ -24,7 +24,7 @@ const Steps = () => {
       case 0:
         return <DrivePicker />;
       case 1:
-        return <Editor />;
+        return <Editor spreadsheet={spreadsheet} setSpreadsheet={setSpreadsheet} />;
       case 2:
         return <Sender />;
       default:

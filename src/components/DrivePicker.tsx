@@ -25,9 +25,9 @@ function transformSpreadsheetData(data: any) {
     valuesWithoutEmpties.length - 1,
   );
 
-  const usersWithVars = rawUsers.map((user: any) => {
-    const transformedUserObject = {};
-    user.map((userValue: any, index: number) => {
+  const usersWithVars = rawUsers.map((userValues: any) => {
+    const transformedUserObject = { title };
+    userValues.map((userValue: any, index: number) => {
       if (variables[index]) {
         transformedUserObject[variables[index]] = userValue || '0';
       }
@@ -36,10 +36,9 @@ function transformSpreadsheetData(data: any) {
   });
 
   return {
-    title,
     usersData: usersWithVars,
-    variables,
-  };
+    variables: ['title'].concat(variables),
+  }
 }
 
 const pickerOnChange = (

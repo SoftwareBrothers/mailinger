@@ -20,7 +20,7 @@ const DynamicVariables = () => {
         <Chip
           key={`chip-${variable}`}
           label={variable}
-          style={{ marginRight: 10 }}
+          style={{ marginRight: 10, marginTop: 5, marginBottom: 5 }}
         />
       ))}
     </Paper>

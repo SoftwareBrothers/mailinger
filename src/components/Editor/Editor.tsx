@@ -20,6 +20,7 @@ const Editor = () => {
         <Grid>
           <DynamicVariables />
           <CKEditor editor={ClassicEditor} data={content} onChange={update} />
+
         </Grid>
       </SpreadsheetCtx.Provider>
     </div>

@@ -18,25 +18,7 @@ const SendEmailButton = () => {
         email: 'pawel.lorenc@rst-it.com',
         firstName: 'Paweł',
         lastName: 'Lorenc',
-      },
-      {
-        data: {
-          content: 'Masz te swoje 60k. Tutaj wyświetlam jakieś polskie znaki, na przykład w słowie żółć.',
-          subject: 'Wystaw fakturę',
-        },
-        email: 'marek.firlejczyk@rst-it.com',
-        firstName: 'Marek',
-        lastName: 'Firlejczyk',
-      },
-      {
-        data: {
-          content: 'Masz te swoje 60k. Tutaj wyświetlam jakieś polskie znaki, na przykład w słowie żółć.',
-          subject: 'Wystaw fakturę',
-        },
-        email: 'szymon.poltorak@rst-it.com',
-        firstName: 'Szymon',
-        lastName: 'Półtorak',
-      },
+      }
     ];
 
     send(recipients, user);

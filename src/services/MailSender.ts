@@ -1,7 +1,7 @@
-import axios from 'axios';
 import base64url from "base64url";
 import {IUser} from "../types";
 import {IRecipient} from "../types/recipient";
+import googleApi from "./GoogleApi";
 
 const send = (recipients: IRecipient[], user: IUser) => {
 
@@ -24,12 +24,7 @@ ${recipient.data.content}`;
 
     const data = webSafe64(base64url(stream));
 
-    axios.post('https://www.googleapis.com/gmail/v1/users/me/messages/send',
-      {raw: data},
-      {headers:
-          {'Authorization': 'Bearer ' + user.token.accessToken}
-      }
-    )
+    googleApi.post('/gmail/v1/users/me/messages/send', {raw: data})
       .then(res => {
         console.log(res);
       }).catch((error) => {

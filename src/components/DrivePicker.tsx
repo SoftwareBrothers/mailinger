@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import GooglePicker from 'react-google-picker';
+import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { UserCtx } from 'src/contexts/user.context';
 import { IUser } from 'src/types';
+import { ISpreadsheet } from 'src/types/spreadsheet';
 
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 const DEVELOPER_KEY = process.env.REACT_APP_DEVELOPER_KEY || '';
@@ -20,7 +22,7 @@ function transformSpreadsheetData(data: any) {
     const transformedUserObject = {};
     user.map((userValue: any, index: number) => {
       if (variables[index]) {
-        transformedUserObject[variables[index]] = userValue
+        transformedUserObject[variables[index]] = userValue || '0'
       }
     })
     return transformedUserObject
@@ -33,8 +35,8 @@ function transformSpreadsheetData(data: any) {
   }
 }
 
-const pickerOnChange = (data: any, user: IUser) => {
-  if(data.docs && data.docs[0]) {
+const pickerOnChange = (data: any, user: IUser, setSpreadsheet: (data: ISpreadsheet) => void) => {
+  if(data.docs && data.docs[0] && user && user.token) {
     fetch(`https://sheets.googleapis.com/v4/spreadsheets/${data.docs[0].id}?includeGridData=true`,
       { headers: {
         'Authorization': `Bearer ${user.token.accessToken}`}
@@ -43,12 +45,12 @@ const pickerOnChange = (data: any, user: IUser) => {
       .then(response => response.json())
       .then((responseData) => {
         const transformed = transformSpreadsheetData(responseData)
+        setSpreadsheet(transformed);
         console.log(transformed);
       })
       .catch((error) => {
         console.log('Error while parsing document', error);
       })
-
   }
 }
 
@@ -58,16 +60,21 @@ const pickerOnAuthFailed = (error: any) => {
 
 const drivePicker = () => {
   const [user] = useContext(UserCtx);
+  const [, setSpreadsheet] = useContext(SpreadsheetCtx)
+  const onChange = (data: any) => {
+    pickerOnChange(data, user, setSpreadsheet);
+  }
   return (
-  <div>
-    <GooglePicker
-      clientId={CLIENT_ID}
-      developerKey={DEVELOPER_KEY}
-      scope={['https://www.googleapis.com/auth/drive']}
-      onChange={(data) => { pickerOnChange(data, user) }}
-      onAuthFailed={pickerOnAuthFailed}
-    ><button>pick</button></GooglePicker>
-  </div>
-)};
+    <div>
+      <GooglePicker
+        clientId={CLIENT_ID}
+        developerKey={DEVELOPER_KEY}
+        scope={['https://www.googleapis.com/auth/drive']}
+        onChange={onChange}
+        onAuthFailed={pickerOnAuthFailed}
+      ><button>pick</button></GooglePicker>
+    </div>
+  )
+};
 
 export default drivePicker;

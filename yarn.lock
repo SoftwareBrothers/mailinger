@@ -25,6 +25,18 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@ckeditor/ckeditor5-build-classic@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-12.0.0.tgz#0a738809ee5d45be7bf18a474b73cb15902ba871"
+  integrity sha512-BdD7+u3obrWuPC2kxG/JBXBrtohfPbCzLrNOYE0ITe7qokqmzvfY4WAMwPuI2wBwbuHzuPeGJCnWvjQZgtRZoQ==
+
+"@ckeditor/ckeditor5-react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-1.1.1.tgz#432a8510636190b90bbf2090c4be5f6be14fda0e"
+  integrity sha512-5BB15RU4aAg8axKiHqZQTtCgTxuRl2N+EyA/rLBnb7/RikElwRvFEGgMPciwBAPFGY26Y++Ln0M2zFcjRCRx+Q==
+  dependencies:
+    prop-types "^15.6.1"
+
 "@material-ui/core@^3.9.2":
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.9.2.tgz#41ed1a470e981d199829eb5d9317a671c66a6f7d"
@@ -84,6 +96,11 @@
     "@babel/runtime" "^7.2.0"
     prop-types "^15.6.0"
     react-is "^16.6.3"
+
+"@types/ckeditor@^4.9.7":
+  version "4.9.7"
+  resolved "https://registry.yarnpkg.com/@types/ckeditor/-/ckeditor-4.9.7.tgz#b637e7aea0b99b3ec588f89e3c31f933f29527b8"
+  integrity sha512-SbD4kRVAHZIFkH8Y8/iUxElcnDFsjKqzyu+3aOjLa0/4jCWZmHwZa5/C2hROvO9gKTZcCPzmGcAxl49StshahA==
 
 "@types/jest-diff@*":
   version "20.0.1"
@@ -6690,7 +6707,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.6.0:
+prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==

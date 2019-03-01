@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Bar from './components/Bar';
-import DrivePicker from './components/DrivePicker';
+import Editor from './components/Editor/Editor';
 import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
 import { createUserFromLocalStorage, IUser } from './types';
@@ -22,9 +22,7 @@ function App() {
       <div>
         <Bar />
       </div>
-      <div>
-        <DrivePicker />
-      </div>
+      { user ? <Editor /> : null }
     </UserCtx.Provider>
   );
 }

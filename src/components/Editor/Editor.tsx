@@ -5,11 +5,8 @@ import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { mailContent } from 'src/seeds/mail';
 
 import React from 'react';
-<<<<<<< Updated upstream
-=======
 import { ISpreadsheet } from 'src/types/spreadsheet';
 import DrivePicker from '../DrivePicker';
->>>>>>> Stashed changes
 import DynamicVariables from './DynamicVariables';
 
 const Editor = () => {

@@ -36,6 +36,7 @@ const Login = () => {
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
+        scope='profile email https://www.googleapis.com/auth/gmail.compose'
       />
     </UserCtx.Provider>
   );

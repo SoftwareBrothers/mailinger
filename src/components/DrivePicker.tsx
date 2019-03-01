@@ -1,6 +1,6 @@
 import { Button, Grid } from '@material-ui/core';
 import StorageIcon from '@material-ui/icons/Storage';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import GooglePicker from 'react-google-picker';
 import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { UserCtx } from 'src/contexts/user.context';
@@ -76,9 +76,21 @@ const pickerOnAuthFailed = (error: any) => {
 
 const drivePicker = () => {
   const [user] = useContext(UserCtx);
+  const [embedLink, setEmbedLink] = useState(null);
   const [, setSpreadsheet] = useContext(SpreadsheetCtx);
+
   const onChange = (data: any) => {
+    if (data.docs && data.docs[0]) {
+      setEmbedLink(data.docs[0].embedUrl);
+    }
     pickerOnChange(data, user, setSpreadsheet);
+  };
+
+  const renderEmbed = () => {
+    if (embedLink) {
+      return <embed style={{ width: '90%', minHeight: 550, marginTop: 25}} src={embedLink} />;
+    }
+    return null;
   };
   return (
     <Grid item={true} xs={12} style={{ textAlign: 'center', padding: 'auto' }}>
@@ -94,6 +106,7 @@ const drivePicker = () => {
           Select File
         </Button>
       </GooglePicker>
+      {renderEmbed()}
     </Grid>
   );
 };

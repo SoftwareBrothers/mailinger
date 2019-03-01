@@ -10,7 +10,7 @@ import Sender from './../Sender';
 import Navigation from './Navigation';
 
 const Steps = () => {
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, setActiveStep] = React.useState(0);
   const [spreadsheet, setSpreadsheet] = React.useState(null);
 
   const steps = [
@@ -21,11 +21,11 @@ const Steps = () => {
 
   function getComponent() {
     switch (activeStep) {
-      case 1:
+      case 0:
         return <DrivePicker />;
-      case 2:
+      case 1:
         return <Editor />;
-      case 3:
+      case 2:
         return <Sender />;
       default:
         return null;
@@ -40,11 +40,11 @@ const Steps = () => {
           nonLinear={true}
           activeStep={activeStep}
         >
-          {steps.map(step => {
+          {steps.map(step => (
             <Step key={step.key}>
               <StepButton>{step.label}</StepButton>
-            </Step>;
-          })}
+            </Step>
+          ))}
         </Stepper>
         {getComponent()}
         <Navigation />

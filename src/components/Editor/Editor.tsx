@@ -5,6 +5,7 @@ import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { mailContent } from 'src/seeds/mail';
 
 import React from 'react';
+import DrivePicker from '../DrivePicker';
 import DynamicVariables from './DynamicVariables';
 
 const Editor = () => {
@@ -17,6 +18,7 @@ const Editor = () => {
   return (
     <div style={{ padding: 20 }}>
       <SpreadsheetCtx.Provider value={[spreadsheet, setSpreadsheet]}>
+        <DrivePicker />
         <Grid>
           <DynamicVariables />
           <CKEditor editor={ClassicEditor} data={content} onChange={update} />

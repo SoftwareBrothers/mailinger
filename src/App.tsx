@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <UserCtx.Provider value={[user, setUser]}>
+    <UserCtx.Provider value={[user, setUser, removeUser]}>
       <div>
         <Bar />
         <SendEmailButton />

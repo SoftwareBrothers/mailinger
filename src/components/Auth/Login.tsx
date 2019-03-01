@@ -4,7 +4,7 @@ import * as React from 'react';
 import GoogleLogin from 'react-google-login';
 import { IUser } from '../../types/user';
 
-const CLINET_ID = process.env.REACT_APP_GOOGLE_ID || '';
+const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 
 export const UserCtx = createContext<IUser>(null as any);
 
@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <UserCtx.Provider value={user}>
       <GoogleLogin
-        clientId={CLINET_ID}
+        clientId={CLIENT_ID}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}

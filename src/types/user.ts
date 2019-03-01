@@ -1,4 +1,10 @@
-export const STORE_USER = 'STORE_USER';
+import { Nullable } from './nullable';
+
+export interface IUserToken {
+  accessToken: string;
+  expiresAt: Nullable<Date>;
+  idToken: string;
+}
 
 export interface IUser {
   email: string;
@@ -6,15 +12,9 @@ export interface IUser {
   lastName: string;
   googleId: number;
   name: string;
+  token: IUserToken;
 }
 
 export interface IUserState {
   user: IUser | null;
 }
-
-export interface ISetUserAction {
-  type: typeof STORE_USER;
-  payload: IUser;
-}
-
-export type UserActionTypes = ISetUserAction;

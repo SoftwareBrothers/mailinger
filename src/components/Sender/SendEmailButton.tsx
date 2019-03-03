@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
-import {UserCtx} from "../contexts/user.context";
-import send from '../services/MailSender';
+import { UserCtx } from '../../contexts/user.context';
+import send from '../../services/MailSender';
 
 const SendEmailButton = ({ rcps }) => {
   const [user] = React.useContext(UserCtx);

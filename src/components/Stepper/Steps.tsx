@@ -30,19 +30,23 @@ const Steps = () => {
     <SpreadsheetCtx.Provider value={[spreadsheet, setSpreadsheet]}>
       <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
         <StepCtx.Provider value={[activeStep, setActiveStep]}>
-          <Stepper
-            alternativeLabel={true}
-            nonLinear={true}
-            activeStep={(activeStep && activeStep.number) || undefined}
-          >
-            {steps.map(step => (
-              <Step key={step.key}>
-                <StepButton>{step.label}</StepButton>
-              </Step>
-            ))}
-          </Stepper>
-          {getComponent()}
-          <Navigation />
+          <main>
+            <Stepper
+              alternativeLabel={true}
+              nonLinear={true}
+              activeStep={(activeStep && activeStep.number) || undefined}
+            >
+              {steps.map(step => (
+                <Step key={step.key}>
+                  <StepButton>{step.label}</StepButton>
+                </Step>
+              ))}
+            </Stepper>
+            {getComponent()}
+          </main>
+          <footer style={{ padding: 10 }}>
+            <Navigation />
+          </footer>
         </StepCtx.Provider>
       </MailTemplateCtx.Provider>
     </SpreadsheetCtx.Provider>

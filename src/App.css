@@ -1,0 +1,13 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+main {
+  flex: 1;
+}

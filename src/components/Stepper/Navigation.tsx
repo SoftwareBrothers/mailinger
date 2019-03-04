@@ -21,16 +21,11 @@ const Navigation = () => {
   }
 
   return (
-    <BottomNavigation
-      style={{
-        width: '100%',
-        position: 'fixed',
-        bottom: 0,
-      }}
-      value={activeStep}
-      showLabels={true}
-    >
+    <BottomNavigation value={activeStep} showLabels={true}>
       <BottomNavigationAction
+        style={{
+          margin: '0 auto',
+        }}
         label="Prev"
         disabled={activeStep.number === 0}
         icon={<NavigateBeforeIcon />}
@@ -42,6 +37,9 @@ const Navigation = () => {
         disabled={
           activeStep.nubmer === steps.length - 1 || activeStep.isBlocked
         }
+        style={{
+          margin: '0 auto',
+        }}
         label="Next"
         icon={<NavigateNextIcon />}
         onClick={handleNext}

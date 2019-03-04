@@ -19,29 +19,24 @@ const styles = createStyles({
     marginLeft: -12,
     marginRight: 20,
   },
-  root: {
-    flexGrow: 1,
-  },
 });
 
-export interface IProps extends WithStyles<typeof styles> { }
+export interface IProps extends WithStyles<typeof styles> {}
 
 const ButtonAppBar = (props: IProps) => {
   const { classes } = props;
   const [user] = React.useContext(UserCtx);
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            {process.env.REACT_APP_NAME}
-          </Typography>
-          {user ? <Hello /> : <Login />}
-          {user ? <LogoutButton /> : null }
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" color="inherit" className={classes.grow}>
+          {process.env.REACT_APP_NAME}
+        </Typography>
+        {user ? <Hello /> : <Login />}
+        {user ? <LogoutButton /> : null}
+      </Toolbar>
+    </AppBar>
   );
 };
 

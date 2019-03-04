@@ -6,6 +6,8 @@ import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
 import { createUserFromLocalStorage, IUser } from './types';
 
+import './App.css';
+
 const hasTokenExpired = (userObj: IUser): boolean => {
   return userObj && userObj.token && new Date() > userObj.token.expiresAt;
 };
@@ -23,9 +25,7 @@ function App() {
 
   return (
     <UserCtx.Provider value={[user, setUser, removeUser]}>
-      <div>
-        <Bar />
-      </div>
+      <Bar />
       {user ? <Steps /> : null}
     </UserCtx.Provider>
   );

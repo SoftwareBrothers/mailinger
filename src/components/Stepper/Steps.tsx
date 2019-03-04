@@ -2,19 +2,19 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
 import React from 'react';
-import DrivePicker from 'src/components/DrivePicker';
 import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { StepCtx } from 'src/contexts/step.context';
+import { IStep } from 'src/types/step';
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import { mailContent } from '../../seeds/mail';
-import Editor from '../Editor/Editor';
-import Sender from './../Sender';
+
+import { getStep } from 'src/const/steps';
 import Navigation from './Navigation';
 
 const Steps = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState<IStep | null>(getStep(0));
   const [spreadsheet, setSpreadsheet] = React.useState(null);
-  const [mailTemplate, setMailTemplate] = React.useState(mailContent);
+  const [mailTemplate, setMailTemplate] = React.useState<string>(mailContent);
 
   const steps = [
     { key: 'choose', label: 'Choose' },
@@ -23,16 +23,7 @@ const Steps = () => {
   ];
 
   function getComponent() {
-    switch (activeStep) {
-      case 0:
-        return <DrivePicker />;
-      case 1:
-        return <Editor />;
-      case 2:
-        return <Sender />;
-      default:
-        return null;
-    }
+    return (activeStep && activeStep.component) || null;
   }
 
   return (
@@ -42,7 +33,7 @@ const Steps = () => {
           <Stepper
             alternativeLabel={true}
             nonLinear={true}
-            activeStep={activeStep}
+            activeStep={(activeStep && activeStep.number) || undefined}
           >
             {steps.map(step => (
               <Step key={step.key}>

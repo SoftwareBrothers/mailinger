@@ -7,7 +7,6 @@ import { getStep } from 'src/const/steps';
 import { StepCtx } from 'src/contexts/step.context';
 
 const Navigation = () => {
-  const [steps] = React.useState([1, 2, 3]);
   const [activeStep, setActiveStep] = React.useContext(StepCtx);
 
   function handleBack() {
@@ -32,11 +31,8 @@ const Navigation = () => {
         onClick={handleBack}
         value="prev"
       />
-
       <BottomNavigationAction
-        disabled={
-          activeStep.nubmer === steps.length - 1 || activeStep.isBlocked
-        }
+        disabled={activeStep.isBlocked}
         style={{
           margin: '0 auto',
         }}

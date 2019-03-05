@@ -21,6 +21,7 @@ export class SpreadSheetTransofrmer {
           transformedUserObject[variables[index]] = userValue || '0';
         }
       });
+      transformedUserObject.send = true;
       return transformedUserObject;
     });
 

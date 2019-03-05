@@ -19,7 +19,7 @@ export const EditorStep: IStep = {
 
 export const SenderStep: IStep = {
   component: <Sender />,
-  isBlocked: false,
+  isBlocked: true,
   number: 2,
 };
 

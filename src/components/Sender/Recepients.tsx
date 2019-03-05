@@ -9,22 +9,39 @@ import React from 'react';
 import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 
 const Recepients = () => {
-  const [spreadsheet] = React.useContext(SpreadsheetCtx);
+  const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
+  function OnChange(
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ) {
+    const index = spreadsheet.usersData.findIndex(
+      data => data.email === event.target.value,
+    );
+    const data = Object.assign({}, spreadsheet);
+    data.usersData[index].send = checked;
+    setSpreadsheet(data);
+  }
   if (spreadsheet) {
     return (
       <Grid container={true}>
         <Grid item={true} md={3} />
         <Grid item={true} xs={12} md={6} style={{ textAlign: 'center' }}>
           <List>
-            {spreadsheet.usersData.map(user => (
+            {spreadsheet.usersData.map(userData => (
               <ListItem
-                key={user.email}
+                key={userData.email}
                 role={undefined}
                 dense={true}
                 button={true}
               >
-                <Checkbox checked={true} tabIndex={-1} disableRipple={true} />
-                <ListItemText primary={`${user.email}`} />
+                <Checkbox
+                  checked={userData.send}
+                  tabIndex={-1}
+                  disableRipple={true}
+                  onChange={OnChange}
+                  value={userData.email}
+                />
+                <ListItemText primary={`${userData.email}`} />
               </ListItem>
             ))}
           </List>

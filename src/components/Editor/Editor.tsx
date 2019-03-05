@@ -11,6 +11,7 @@ import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { MailTemplateCtx } from 'src/contexts/mail-template.context';
 
 const replaceVars = (input: string, spreadsheet: any) => {
   return input.replace(/\[(.*?)\]/g, (match, p1) => {
@@ -22,16 +23,18 @@ const replaceVars = (input: string, spreadsheet: any) => {
 };
 
 const editor = () => {
-  const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
+  const [mailTemplate, setMailTemplate] = React.useContext(MailTemplateCtx);
+  const [spreadsheet] = React.useContext(SpreadsheetCtx);
   const [editor, setEditor] = React.useState(
-    EditorState.createWithContent(stateFromHTML(mailContent)),
+    EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );
   const [preview, setPreview] = React.useState(
-    replaceVars(mailContent, spreadsheet),
+    replaceVars(mailTemplate, spreadsheet),
   );
 
   const onChange = (data: any) => {
     setEditor(data);
+    setMailTemplate(stateToHTML(data.getCurrentContent()));
     setPreview(replaceVars(stateToHTML(data.getCurrentContent()), spreadsheet));
   };
 

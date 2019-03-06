@@ -1,5 +1,5 @@
 import { SpreadSheetProvider } from 'src/providers/spreadsheet.provider';
-import { SpreadSheetTransofrmer } from 'src/transformers/spreadsheet.transformer';
+import { SpreadSheetTransformer } from 'src/transformers/spreadsheet.transformer';
 import { ISpreadsheet } from 'src/types';
 
 export default class SpreadSheetService {
@@ -9,7 +9,7 @@ export default class SpreadSheetService {
         new SpreadSheetProvider()
           .provide(data.docs[0].id)
           .then(response => {
-            const transformed = new SpreadSheetTransofrmer().transform(
+            const transformed = new SpreadSheetTransformer().transform(
               response.data,
             );
             transformed.embedUrl = data.docs[0].embedUrl;

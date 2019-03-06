@@ -4,7 +4,9 @@ import { IRecipient, IUser } from '../types';
 export default (recipient: IRecipient, user: IUser) => {
   const messageId = new Date().getUTCMilliseconds();
   const userFullName = user.firstName + ' ' + user.lastName;
-  const recipientFullName = recipient.firstName + ' ' + recipient.lastName;
+  const firstName = recipient.firstName || '';
+  const lastName = recipient.lastName || '';
+  const recipientFullName = firstName + ' ' + lastName;
 
   const encode = (text: any) => {
     return '=?utf-8?B?' + Base64.encodeURI(text) + '?=';

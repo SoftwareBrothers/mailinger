@@ -14,17 +14,17 @@ const Sender = () => {
   const [subject, setSubject] = React.useState('Proszę o wystawienie Faktury');
 
   const recepients = spreadsheet.usersData.filter(user => user.send);
-  const dataToSend = spreadsheet.usersData.map(user => {
-    if (user.send) {
+  const dataToSend = recepients.map(userData => {
+    if (userData.send) {
       return {
-        email: user.email,
+        email: userData.email,
         data: {
           subject,
-          content: replaceVars(mailTemplate, spreadsheet),
+          content: replaceVars(mailTemplate, userData),
         },
       };
     }
-    return null;
+    return;
   });
 
   const SendEmails = () => {

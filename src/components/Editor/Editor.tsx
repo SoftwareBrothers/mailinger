@@ -1,14 +1,14 @@
+import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
-import { mailContent } from 'src/seeds/mail';
-
-import React from 'react';
-import DynamicVariables from './DynamicVariables';
-
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
+import React, { memo, useContext, useState } from 'react';
+import { Editor as Wysiwyg } from 'react-draft-wysiwyg';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { useStyles } from '../../hooks/useStyles';
+import { mailContent } from '../../seeds/mail';
+import DynamicVariables from './DynamicVariables';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -21,14 +21,19 @@ const replaceVars = (input: string, spreadsheet: any) => {
   });
 };
 
-const editor = () => {
-  const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
-  const [editor, setEditor] = React.useState(
+const styles = (theme: Theme) => ({
+  root: {
+    padding: theme.spacing.unit * 2,
+  },
+});
+
+const Editor = () => {
+  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailContent)),
   );
-  const [preview, setPreview] = React.useState(
-    replaceVars(mailContent, spreadsheet),
-  );
+  const [preview, setPreview] = useState(replaceVars(mailContent, spreadsheet));
+  const classes = useStyles(styles);
 
   const onChange = (data: any) => {
     setEditor(data);
@@ -38,10 +43,10 @@ const editor = () => {
   const options = ['fontSize', 'fontFamily', 'list', 'textAlign'];
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className={classes.root}>
       <Grid>
         <DynamicVariables />
-        <Editor
+        <Wysiwyg
           editorState={editor}
           onEditorStateChange={onChange}
           toolbar={{
@@ -55,4 +60,4 @@ const editor = () => {
   );
 };
 
-export default editor;
+export default memo(Editor);

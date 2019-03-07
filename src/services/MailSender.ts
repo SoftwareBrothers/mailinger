@@ -1,10 +1,9 @@
 import { Base64 } from 'js-base64';
-import client from 'src/config/gmail.client';
-import { IUser } from '../types';
-import { IRecipient } from '../types/recipient';
+import client from '../config/gmail.client';
+import { Recipient, User } from '../models';
 import eml from './GenerateEML';
 
-const send = (recipients: IRecipient[], user: IUser) => {
+const send = (recipients: Recipient[], user: User) => {
   for (const recipient of recipients) {
     const stream = eml(recipient, user);
     const data = Base64.encodeURI(stream);

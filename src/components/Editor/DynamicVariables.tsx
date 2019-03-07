@@ -1,18 +1,34 @@
+import { Theme } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
-import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
+import React, { memo, useContext } from 'react';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { useStyles } from '../../hooks/useStyles';
+
+const styles = (theme: Theme) => ({
+  chip: {
+    marginBottom: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    marginTop: theme.spacing.unit,
+  },
+  paper: {
+    margin: `${theme.spacing.unit} 0`,
+    padding: theme.spacing.unit,
+  },
+});
 
 const DynamicVariables = () => {
-  const [spreadsheet] = React.useContext(SpreadsheetCtx);
+  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const classes = useStyles(styles);
   const variables: string[] = (spreadsheet && spreadsheet.variables) || [];
 
   if (!variables.length) {
     return null;
   }
+
   return (
-    <Paper style={{ padding: 20, margin: '20px 0' }}>
+    <Paper className={classes.paper}>
       <Typography variant="button" gutterBottom={true}>
         {'Available variables: '}
       </Typography>
@@ -20,11 +36,11 @@ const DynamicVariables = () => {
         <Chip
           key={`chip-${variable}`}
           label={variable}
-          style={{ marginRight: 10, marginTop: 5, marginBottom: 5 }}
+          className={classes.chip}
         />
       ))}
     </Paper>
   );
 };
 
-export default DynamicVariables;
+export default memo(DynamicVariables);

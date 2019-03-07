@@ -1,15 +1,15 @@
-import { SpreadSheetProvider } from 'src/providers/spreadsheet.provider';
-import { SpreadSheetTransofrmer } from 'src/transformers/spreadsheet.transformer';
-import { ISpreadsheet } from 'src/types';
+import { Spreadsheet } from '../models';
+import { SpreadSheetProvider } from '../providers/spreadsheet.provider';
+import { SpreadSheetTransformer } from '../transformers/spreadsheet.transformer';
 
 export default class SpreadSheetService {
-  public onFilePicked(data: any, setSpreadsheet: (data: ISpreadsheet) => void) {
+  public onFilePicked(data: any, setSpreadsheet: (data: Spreadsheet) => void) {
     return new Promise((resolve, reject) => {
       if (data.docs && data.docs[0]) {
         new SpreadSheetProvider()
           .provide(data.docs[0].id)
           .then(response => {
-            const transformed = new SpreadSheetTransofrmer().transform(
+            const transformed = new SpreadSheetTransformer().transform(
               response.data,
             );
             transformed.embedUrl = data.docs[0].embedUrl;

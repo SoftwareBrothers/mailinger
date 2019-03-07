@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import { getStep } from 'src/const/steps';
+import {getStep} from "../const/steps";
 
-export const StepCtx = createContext(getStep(0));
+export const StepCtx = createContext(getStep(0)) as any;

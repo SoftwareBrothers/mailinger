@@ -1,9 +1,14 @@
 import Button from '@material-ui/core/Button';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {UserCtx} from "../contexts/user.context";
 import send from '../services/MailSender';
+import {IRecipient} from "../types";
 
-const SendEmailButton = ({ rcps }) => {
+interface OwnProps {
+  rcps: IRecipient[]
+}
+
+const SendEmailButton: FunctionComponent<OwnProps> = ({ rcps }) => {
   const [user] = React.useContext(UserCtx);
 
   const click = () => {

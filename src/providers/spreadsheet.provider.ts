@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import client from 'src/config/google.client';
+import client from '../config/google.client';
 
 export class SpreadSheetProvider {
   protected client: AxiosInstance;

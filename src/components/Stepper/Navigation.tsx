@@ -3,8 +3,8 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import React from 'react';
-import { getStep } from 'src/const/steps';
-import { StepCtx } from 'src/contexts/step.context';
+import {getStep} from "../../const/steps";
+import {StepCtx} from "../../contexts/step.context";
 
 const Navigation = () => {
   const [steps] = React.useState([1, 2, 3]);

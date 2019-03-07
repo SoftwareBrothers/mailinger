@@ -5,4 +5,4 @@ export const replaceVars = (input: string, spreadsheet: any) => {
     }
     return match;
   })
-}
+};

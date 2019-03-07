@@ -1,4 +1,4 @@
-import { ISpreadsheet } from 'src/types/spreadsheet';
+import { ISpreadsheet } from '../types';
 
 export class SpreadSheetTransofrmer {
   public transform(data: any): ISpreadsheet {
@@ -18,6 +18,7 @@ export class SpreadSheetTransofrmer {
       const transformedUserObject = { title };
       userValues.map((userValue: any, index: number) => {
         if (variables[index]) {
+          // @ts-ignore
           transformedUserObject[variables[index]] = userValue || '0';
         }
       });

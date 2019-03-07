@@ -22,12 +22,12 @@ export function useLocalStorage<T>(
       // tslint:disable-next-line
       console.warn('Error', error);
     }
-  }
+  };
 
   const removeValue = () => {
     localStorage.removeItem(key);
     setStoredValue(null as any);
-  }
+  };
 
   return [storedValue, setValue, removeValue];
 }

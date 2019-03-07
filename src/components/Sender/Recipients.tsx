@@ -8,9 +8,10 @@ import {
 import React from 'react';
 import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 
-const Recepients = () => {
+const Recipients = () => {
   const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
-  function OnChange(
+
+  function onChange(
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) {
@@ -21,6 +22,7 @@ const Recepients = () => {
     data.usersData[index].send = checked;
     setSpreadsheet(data);
   }
+
   if (spreadsheet) {
     return (
       <Grid container={true}>
@@ -38,7 +40,7 @@ const Recepients = () => {
                   checked={userData.send}
                   tabIndex={-1}
                   disableRipple={true}
-                  onChange={OnChange}
+                  onChange={onChange}
                   value={userData.email}
                 />
                 <ListItemText primary={`${userData.email}`} />
@@ -52,4 +54,4 @@ const Recepients = () => {
   return null;
 };
 
-export default Recepients;
+export default Recipients;

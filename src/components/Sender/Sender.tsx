@@ -5,7 +5,7 @@ import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
 import { UserCtx } from 'src/contexts/user.context';
 import send from 'src/services/MailSender';
 import { replaceVars } from '../utils';
-import Recepients from './Recepients';
+import Recipients from './Recipients';
 
 const Sender = () => {
   const [mailTemplate] = React.useContext(MailTemplateCtx);
@@ -13,9 +13,9 @@ const Sender = () => {
   const [user] = React.useContext(UserCtx);
   const [subject, setSubject] = React.useState('Proszę o wystawienie Faktury');
 
-  const recepients = spreadsheet.usersData.filter(user => user.send);
-  const dataToSend = recepients.map(userData => {
-    if (userData.send) {
+  const recipients = spreadsheet.usersData.filter(user => user.send);
+  const dataToSend = recipients.map(user => {
+    if (user.send) {
       return {
         email: userData.email,
         data: {
@@ -46,12 +46,12 @@ const Sender = () => {
         value={subject}
         onChange={changeTitle}
       />
-      <Recepients />
+      <Recipients />
       <Button
         variant="contained"
         color="primary"
         onClick={SendEmails}
-        disabled={!recepients.length}
+        disabled={!recipients.length}
       >
         Send
       </Button>

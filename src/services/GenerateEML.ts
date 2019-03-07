@@ -4,7 +4,8 @@ import { Recipient, User } from '../models';
 export default (recipient: Recipient, user: User) => {
   const messageId = new Date().getUTCMilliseconds();
   const userFullName = user.firstName + ' ' + user.lastName;
-  const recipientFullName = recipient.firstName + ' ' + recipient.lastName;
+  const { firstName = '', lastName = '' } = recipient;
+  const recipientFullName = `${firstName} ${lastName}`;
 
   const encode = (text: any) => {
     return '=?utf-8?B?' + Base64.encodeURI(text) + '?=';

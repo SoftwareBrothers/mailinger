@@ -1,4 +1,4 @@
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Theme } from '@material-ui/core';
 import StorageIcon from '@material-ui/icons/Storage';
 import React, { memo, useContext } from 'react';
 // @ts-ignore
@@ -15,7 +15,7 @@ const pickerOnAuthFailed = (error: any) => {
   console.log('Picker auth failed error:', error);
 };
 
-const styles = {
+const styles = (theme: Theme) => ({
   embed: {
     marginTop: 25,
     minHeight: 550,
@@ -25,7 +25,10 @@ const styles = {
     padding: 'auto',
     textAlign: 'center' as any,
   },
-};
+  storageIcon: {
+    marginRight: theme.spacing.unit * 2,
+  },
+});
 
 const DrivePicker = () => {
   const [spreadsheet, setSpreadsheet] = useContext(SpreadsheetCtx);
@@ -58,7 +61,7 @@ const DrivePicker = () => {
         onAuthFailed={pickerOnAuthFailed}
       >
         <Button variant="contained" size="large">
-          <StorageIcon style={{ marginRight: 20 }} />
+          <StorageIcon className={classes.storageIcon} />
           Select File
         </Button>
       </GooglePicker>

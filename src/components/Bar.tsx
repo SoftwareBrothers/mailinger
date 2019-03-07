@@ -1,31 +1,25 @@
 import AppBar from '@material-ui/core/AppBar';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { FunctionComponent, memo, useContext } from 'react';
 import LogoutButton from '../components/Auth/LogoutButton';
 import { UserCtx } from '../contexts/user.context';
+import { useStyles } from '../hooks/useStyles';
 import Login from './Auth/Login';
 import Hello from './Hello';
 
-const styles = createStyles({
+const styles = {
   grow: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
   },
   root: {
     flexGrow: 1,
   },
-});
+};
 
-type Props = WithStyles<typeof styles>;
-
-const ButtonAppBar: FunctionComponent<Props> = props => {
-  const { classes } = props;
+const ButtonAppBar: FunctionComponent = () => {
+  const classes = useStyles(styles);
   const [user] = useContext(UserCtx);
 
   return (
@@ -47,4 +41,4 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default memo(withStyles(styles)(ButtonAppBar));
+export default memo(ButtonAppBar);

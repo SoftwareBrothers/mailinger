@@ -5,10 +5,20 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import React, { memo, useContext, useState } from 'react';
 import { getStep } from '../../const/steps';
 import { StepCtx } from '../../contexts/step.context';
+import {useStyles} from "../../hooks/useStyles";
+
+const styles = {
+  bottomNavigation: {
+      bottom: 0,
+      position: 'fixed' as any,
+      width: '100%',
+  }
+};
 
 const Navigation = () => {
   const [steps] = useState([1, 2, 3]);
   const [activeStep, setActiveStep] = useContext(StepCtx);
+  const classes = useStyles(styles);
 
   function handleBack() {
     const step = getStep(activeStep.number - 1);
@@ -22,11 +32,7 @@ const Navigation = () => {
 
   return (
     <BottomNavigation
-      style={{
-        width: '100%',
-        position: 'fixed',
-        bottom: 0,
-      }}
+      className={classes.bottomNavigation}
       value={activeStep}
       showLabels={true}
     >

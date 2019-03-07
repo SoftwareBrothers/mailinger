@@ -1,3 +1,4 @@
+import { CssBaseline } from '@material-ui/core';
 import React, { memo } from 'react';
 import Bar from './components/Bar';
 import Steps from './components/Stepper/Steps';
@@ -22,9 +23,8 @@ function App() {
 
   return (
     <UserCtx.Provider value={[user, setUser, removeUser]}>
-      <div>
-        <Bar />
-      </div>
+      <CssBaseline />
+      <Bar />
       {user ? <Steps /> : null}
     </UserCtx.Provider>
   );

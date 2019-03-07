@@ -6,7 +6,7 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import React from 'react';
-import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 
 const Recipients = () => {
   const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
@@ -16,7 +16,7 @@ const Recipients = () => {
     checked: boolean,
   ) {
     const index = spreadsheet.usersData.findIndex(
-      data => data.email === event.target.value,
+      (data: any) => data.email === event.target.value,
     );
     const data = Object.assign({}, spreadsheet);
     data.usersData[index].send = checked;
@@ -29,7 +29,7 @@ const Recipients = () => {
         <Grid item={true} md={3} />
         <Grid item={true} xs={12} md={6} style={{ textAlign: 'center' }}>
           <List>
-            {spreadsheet.usersData.map(userData => (
+            {spreadsheet.usersData.map((userData: any) => (
               <ListItem
                 key={userData.email}
                 role={undefined}

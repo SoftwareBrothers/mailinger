@@ -1,19 +1,20 @@
-import React from 'react';
-
+import { CssBaseline } from '@material-ui/core';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import React, { memo } from 'react';
 import Bar from './components/Bar';
 import Steps from './components/Stepper/Steps';
 import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
-import { createUserFromLocalStorage, IUser } from './types';
+import { User } from './models';
+import theme from './theme/theme';
+import { createUserFromLocalStorage } from './transformers/user.transformer';
 
-import './App.css';
-
-const hasTokenExpired = (userObj: IUser): boolean => {
+const hasTokenExpired = (userObj: User): boolean => {
   return userObj && userObj.token && new Date() > userObj.token.expiresAt;
 };
 
 function App() {
-  const [user, setUser, removeUser] = useLocalStorage<IUser>(
+  const [user, setUser, removeUser] = useLocalStorage<User>(
     'user',
     null as any,
     createUserFromLocalStorage,
@@ -24,11 +25,14 @@ function App() {
   }
 
   return (
-    <UserCtx.Provider value={[user, setUser, removeUser]}>
-      <Bar />
-      {user ? <Steps /> : null}
-    </UserCtx.Provider>
+    <ThemeProvider theme={theme}>
+      <UserCtx.Provider value={[user, setUser, removeUser]}>
+        <CssBaseline />
+        <Bar />
+        {user ? <Steps /> : null}
+      </UserCtx.Provider>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default memo(App);

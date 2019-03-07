@@ -1,9 +1,9 @@
-import { SpreadSheetProvider } from 'src/providers/spreadsheet.provider';
-import { SpreadSheetTransformer } from 'src/transformers/spreadsheet.transformer';
-import { ISpreadsheet } from 'src/types';
+import { Spreadsheet } from '../models';
+import { SpreadSheetProvider } from '../providers/spreadsheet.provider';
+import { SpreadSheetTransformer } from '../transformers/spreadsheet.transformer';
 
 export default class SpreadSheetService {
-  public onFilePicked(data: any, setSpreadsheet: (data: ISpreadsheet) => void) {
+  public onFilePicked(data: any, setSpreadsheet: (data: Spreadsheet) => void) {
     return new Promise((resolve, reject) => {
       if (data.docs && data.docs[0]) {
         new SpreadSheetProvider()

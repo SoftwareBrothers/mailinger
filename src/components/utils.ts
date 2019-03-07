@@ -4,5 +4,5 @@ export const replaceVars = (input: string, userData: any) => {
       return userData[p1]
     }
     return match;
-  })
-}
+  });
+};

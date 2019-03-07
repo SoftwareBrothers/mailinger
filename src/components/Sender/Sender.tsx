@@ -1,9 +1,9 @@
 import { Button, Grid, TextField } from '@material-ui/core';
 import React from 'react';
-import { MailTemplateCtx } from 'src/contexts/mail-template.context';
-import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
-import { UserCtx } from 'src/contexts/user.context';
-import send from 'src/services/MailSender';
+import { MailTemplateCtx } from '../../contexts/mail-template.context';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { UserCtx } from '../../contexts/user.context';
+import send from '../../services/MailSender';
 import { replaceVars } from '../utils';
 import Recipients from './Recipients';
 
@@ -13,9 +13,9 @@ const Sender = () => {
   const [user] = React.useContext(UserCtx);
   const [subject, setSubject] = React.useState('Proszę o wystawienie Faktury');
 
-  const recipients = spreadsheet.usersData.filter(user => user.send);
-  const dataToSend = recipients.map(user => {
-    if (user.send) {
+  const recipients = spreadsheet.usersData.filter((user: any) => user.send);
+  const dataToSend = recipients.map((userData: any) => {
+    if (userData.send) {
       return {
         email: userData.email,
         data: {

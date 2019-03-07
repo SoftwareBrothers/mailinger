@@ -2,12 +2,22 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import React from 'react';
-import { getStep } from 'src/const/steps';
-import { StepCtx } from 'src/contexts/step.context';
+import React, { memo, useContext } from 'react';
+import { getStep } from '../../const/steps';
+import { StepCtx } from '../../contexts/step.context';
+import { useStyles } from '../../hooks/useStyles';
+
+const styles = {
+  bottomNavigation: {
+    bottom: 0,
+    position: 'fixed' as any,
+    width: '100%',
+  },
+};
 
 const Navigation = () => {
-  const [activeStep, setActiveStep] = React.useContext(StepCtx);
+  const [activeStep, setActiveStep] = useContext(StepCtx);
+  const classes = useStyles(styles);
 
   function handleBack() {
     const step = getStep(activeStep.number - 1);
@@ -20,7 +30,11 @@ const Navigation = () => {
   }
 
   return (
-    <BottomNavigation value={activeStep} showLabels={true}>
+    <BottomNavigation
+      className={classes.bottomNavigation}
+      value={activeStep}
+      showLabels={true}
+    >
       <BottomNavigationAction
         style={{
           margin: '0 auto',
@@ -45,4 +59,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default memo(Navigation);

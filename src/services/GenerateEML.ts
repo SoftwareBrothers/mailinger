@@ -1,7 +1,7 @@
 import { Base64 } from 'js-base64';
-import { IRecipient, IUser } from '../types';
+import { Recipient, User } from '../models';
 
-export default (recipient: IRecipient, user: IUser) => {
+export default (recipient: Recipient, user: User) => {
   const messageId = new Date().getUTCMilliseconds();
   const userFullName = user.firstName + ' ' + user.lastName;
   const recipientFullName = recipient.firstName + ' ' + recipient.lastName;

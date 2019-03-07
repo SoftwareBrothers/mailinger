@@ -1,29 +1,28 @@
 import React from 'react';
+import DrivePicker from '../components/DrivePicker';
+import Editor from '../components/Editor/Editor';
+import Sender from '../components/Sender/Sender';
+import { Step } from '../models';
 
-import DrivePicker from 'src/components/DrivePicker';
-import Editor from 'src/components/Editor/Editor';
-import Sender from 'src/components/Sender/Sender';
-import { IStep } from 'src/types/step';
-
-export const DrivePickerStep: IStep = {
+export const DrivePickerStep: Step = {
   component: <DrivePicker />,
   isBlocked: true,
   number: 0,
 };
 
-export const EditorStep: IStep = {
+export const EditorStep: Step = {
   component: <Editor />,
   isBlocked: false,
   number: 1,
 };
 
-export const SenderStep: IStep = {
+export const SenderStep: Step = {
   component: <Sender />,
   isBlocked: true,
   number: 2,
 };
 
-export function getStep(step: number): IStep | null {
+export function getStep(step: number): Step | null {
   switch (step) {
     case 0:
       return DrivePickerStep;

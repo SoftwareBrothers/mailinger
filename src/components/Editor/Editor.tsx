@@ -1,42 +1,54 @@
+import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
-
-import React from 'react';
-import DynamicVariables from './DynamicVariables';
-
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
+import React, { memo, useContext, useState } from 'react';
+import { Editor as Wysiwyg } from 'react-draft-wysiwyg';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { useStyles } from '../../hooks/useStyles';
+import DynamicVariables from './DynamicVariables';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { MailTemplateCtx } from 'src/contexts/mail-template.context';
+import { MailTemplateCtx } from '../../contexts/mail-template.context';
 
-import { replaceVars } from 'src/components/utils';
+import { replaceVars } from '../utils';
 
-const editor = () => {
-  const [mailTemplate, setMailTemplate] = React.useContext(MailTemplateCtx);
-  const [spreadsheet] = React.useContext(SpreadsheetCtx);
-  const [editor, setEditor] = React.useState(
+const styles = (theme: Theme) => ({
+  root: {
+    padding: theme.spacing.unit * 2,
+  },
+});
+
+const Editor = () => {
+  const [mailTemplate, setMailTemplate] = useContext(MailTemplateCtx);
+  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );
-  const [preview, setPreview] = React.useState(
+  const [preview, setPreview] = useState(
     replaceVars(mailTemplate, spreadsheet.usersData[0]),
   );
+  const classes = useStyles(styles);
 
   const onChange = (data: any) => {
     setEditor(data);
     setMailTemplate(stateToHTML(data.getCurrentContent()));
-    setPreview(replaceVars(stateToHTML(data.getCurrentContent()), spreadsheet.usersData[0]));
+    setPreview(
+      replaceVars(
+        stateToHTML(data.getCurrentContent()),
+        spreadsheet.usersData[0],
+      ),
+    );
   };
 
   const options = ['fontSize', 'fontFamily', 'list', 'textAlign'];
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className={classes.root}>
       <Grid>
         <DynamicVariables />
-        <Editor
+        <Wysiwyg
           editorState={editor}
           onEditorStateChange={onChange}
           toolbar={{
@@ -50,4 +62,4 @@ const editor = () => {
   );
 };
 
-export default editor;
+export default memo(Editor);

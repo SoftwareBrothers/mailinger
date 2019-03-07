@@ -41,6 +41,7 @@
     "@types/draft-js": "^0.10.29",
     "@types/js-base64": "^2.3.1",
     "@types/react-draft-wysiwyg": "^1.12.2",
+    "prettier": "^1.16.4",
     "tslint": "^5.13.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^3.6.0"

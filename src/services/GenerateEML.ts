@@ -1,5 +1,5 @@
 import { Base64 } from 'js-base64';
-import { Recipient, User } from '../types';
+import { Recipient, User } from '../models';
 
 export default (recipient: Recipient, user: User) => {
   const messageId = new Date().getUTCMilliseconds();

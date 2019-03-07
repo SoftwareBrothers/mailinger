@@ -3,7 +3,7 @@ import React, { memo, useContext } from 'react';
 import { MailTemplateCtx } from '../contexts/mail-template.context';
 import { SpreadsheetCtx } from '../contexts/spreadsheet.context';
 import { useStyles } from '../hooks/useStyles';
-import { User } from '../types';
+import { User } from '../models';
 import SendEmailButton from './SendEmailButton';
 import { replaceVars } from './utils';
 

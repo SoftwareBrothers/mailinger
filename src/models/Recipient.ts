@@ -1,5 +1,5 @@
-import { EmailMeta } from './email';
-import { Nullable } from './nullable';
+import { EmailMeta } from './EmailMeta';
+import { Nullable } from './Nullable';
 
 export interface Recipient {
   email: string;

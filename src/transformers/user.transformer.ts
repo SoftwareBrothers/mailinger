@@ -1,19 +1,5 @@
-export interface UserToken {
-  accessToken: string;
-  expiresAt: Date;
-  idToken: string;
-}
+import { User, UserToken } from '../models';
 
-export interface User {
-  email: string;
-  firstName: string;
-  lastName: string;
-  googleId: number;
-  name: string;
-  token: UserToken;
-}
-
-/* LocalStorage transformers */
 export function createUserFromLocalStorage(storageData: User): User {
   const obj: Partial<User> = {
     ...storageData,
@@ -23,7 +9,9 @@ export function createUserFromLocalStorage(storageData: User): User {
   return obj as User;
 }
 
-export function createUserTokenFromLocalStorage(storageData: UserToken): UserToken {
+export function createUserTokenFromLocalStorage(
+  storageData: UserToken,
+): UserToken {
   return {
     ...storageData,
     // Date in LocalStorage is saved as string, we need to recover that back.

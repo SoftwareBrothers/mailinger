@@ -1,6 +1,6 @@
 import { ISpreadsheet } from '../types';
 
-export class SpreadSheetTransofrmer {
+export class SpreadSheetTransformer {
   public transform(data: any): ISpreadsheet {
     const arrayLike = data.sheets[0].data[0].rowData.map((row: any) => {
       return row.values ? row.values.map((v: any) => v.formattedValue) : [];

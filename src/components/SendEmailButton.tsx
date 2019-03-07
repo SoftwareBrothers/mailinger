@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, memo} from 'react';
 import {UserCtx} from "../contexts/user.context";
 import send from '../services/MailSender';
 import {IRecipient} from "../types";
@@ -22,4 +22,4 @@ const SendEmailButton: FunctionComponent<OwnProps> = ({ rcps }) => {
   );
 };
 
-export default SendEmailButton;
+export default memo(SendEmailButton);

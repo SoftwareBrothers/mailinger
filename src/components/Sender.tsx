@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core';
-import React from 'react';
+import React, {memo} from 'react';
 import {MailTemplateCtx} from "../contexts/mail-template.context";
 import {SpreadsheetCtx} from "../contexts/spreadsheet.context";
 import {IUser} from "../types";
@@ -29,4 +29,4 @@ const Sender = () => {
   );
 };
 
-export default Sender;
+export default memo(Sender);

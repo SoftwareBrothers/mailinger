@@ -1,5 +1,5 @@
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
+import React, {memo} from 'react';
 import { UserCtx } from '../contexts/user.context';
 
 const Hello = () => {
@@ -12,4 +12,4 @@ const Hello = () => {
   );
 };
 
-export default Hello;
+export default memo(Hello);

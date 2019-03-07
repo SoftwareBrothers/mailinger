@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core';
-import React, { useContext } from 'react';
+import React, {memo, useContext} from 'react';
 import {UserCtx} from "../../contexts/user.context";
 
 const LogoutButton = () => {
@@ -9,4 +9,4 @@ const LogoutButton = () => {
   )
 };
 
-export default LogoutButton;
+export default memo(LogoutButton);

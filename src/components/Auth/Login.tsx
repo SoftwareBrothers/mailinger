@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {memo, useContext} from "react";
 import GoogleLogin from 'react-google-login';
 import { UserCtx } from "../../contexts/user.context";
 import { createUserFromJson, IUser } from '../../types';
@@ -6,7 +6,7 @@ import { createUserFromJson, IUser } from '../../types';
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 
 const Login = () => {
-  const [, setUser] = React.useContext(UserCtx);
+  const [, setUser] = useContext(UserCtx);
   function responseGoogle(response: any) {
     const loggedUser: IUser = createUserFromJson(response);
     setUser(loggedUser);
@@ -21,4 +21,4 @@ const Login = () => {
     />
   );
 };
-export default Login;
+export default memo(Login);

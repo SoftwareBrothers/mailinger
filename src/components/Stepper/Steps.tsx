@@ -1,7 +1,7 @@
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
-import React from 'react';
+import React, {memo} from 'react';
 import {getStep} from "../../const/steps";
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import {SpreadsheetCtx} from '../../contexts/spreadsheet.context';
@@ -48,4 +48,4 @@ const Steps = () => {
   );
 };
 
-export default Steps;
+export default memo(Steps);

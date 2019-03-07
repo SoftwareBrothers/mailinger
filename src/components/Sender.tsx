@@ -2,7 +2,7 @@ import { Grid } from '@material-ui/core';
 import React, { memo, useContext } from 'react';
 import { MailTemplateCtx } from '../contexts/mail-template.context';
 import { SpreadsheetCtx } from '../contexts/spreadsheet.context';
-import { IUser } from '../types';
+import { User } from '../types';
 import SendEmailButton from './SendEmailButton';
 import { replaceVars } from './utils';
 
@@ -10,7 +10,7 @@ const Sender = () => {
   const mailTemplate = useContext(MailTemplateCtx);
   const [spreadsheet] = useContext(SpreadsheetCtx);
 
-  const dataToSend = spreadsheet.usersData.map((user: IUser) => {
+  const dataToSend = spreadsheet.usersData.map((user: User) => {
     return {
       email: user.email,
       data: {

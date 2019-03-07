@@ -10,6 +10,8 @@
   "rules": {
     "no-console": {
       "severity": "warn"
-    }
+    },
+    "ordered-imports": true,
+    "interface-name": [true, "never-prefix"]
   }
 }

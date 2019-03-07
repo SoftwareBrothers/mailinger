@@ -1,48 +1,39 @@
-import { Nullable } from './nullable';
-
-export interface IUserToken {
+export interface UserToken {
   accessToken: string;
   expiresAt: Date;
   idToken: string;
 }
 
-export interface IUser {
+export interface User {
   email: string;
   firstName: string;
   lastName: string;
   googleId: number;
   name: string;
-  token: IUserToken;
-}
-
-export interface IUserState {
-  user: Nullable<IUser>;
+  token: UserToken;
 }
 
 /* LocalStorage transformers */
-export function createUserFromLocalStorage(storageData: IUser): IUser {
-  let obj: Partial<IUser> = {};
-  obj = {
+export function createUserFromLocalStorage(storageData: User): User {
+  const obj: Partial<User> = {
     ...storageData,
     token: createUserTokenFromLocalStorage(storageData.token),
   };
 
-  return obj as IUser;
+  return obj as User;
 }
 
-export function createUserTokenFromLocalStorage(
-  storageData: IUserToken,
-): IUserToken {
+export function createUserTokenFromLocalStorage(storageData: UserToken): UserToken {
   return {
     ...storageData,
     // Date in LocalStorage is saved as string, we need to recover that back.
     expiresAt: new Date((storageData.expiresAt as any) as string),
-  } as IUserToken;
+  } as UserToken;
 }
 
 /* JSON transformers */
-export function createUserFromJson(response: any): IUser {
-  const obj: Partial<IUser> = {};
+export function createUserFromJson(response: any): User {
+  const obj: Partial<User> = {};
 
   obj.email = response.profileObj.email;
   obj.lastName = response.profileObj.familyName;
@@ -51,15 +42,15 @@ export function createUserFromJson(response: any): IUser {
   obj.googleId = response.profileObj.googleId;
   obj.token = createUserTokenFromJson(response.tokenObj);
 
-  return obj as IUser;
+  return obj as User;
 }
 
-export function createUserTokenFromJson(response: any): IUserToken {
-  const obj: Partial<IUserToken> = {};
+export function createUserTokenFromJson(response: any): UserToken {
+  const obj: Partial<UserToken> = {};
 
   obj.accessToken = response.access_token;
   obj.expiresAt = response.expires_at && new Date(response.expires_at);
   obj.idToken = response.id_token;
 
-  return obj as IUserToken;
+  return obj as UserToken;
 }

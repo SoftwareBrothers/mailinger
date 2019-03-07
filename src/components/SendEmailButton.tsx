@@ -2,10 +2,10 @@ import Button from '@material-ui/core/Button';
 import React, { FunctionComponent, memo, useContext } from 'react';
 import { UserCtx } from '../contexts/user.context';
 import send from '../services/MailSender';
-import { IRecipient } from '../types';
+import { Recipient } from '../types';
 
 interface OwnProps {
-  rcps: IRecipient[];
+  rcps: Recipient[];
 }
 
 const SendEmailButton: FunctionComponent<OwnProps> = ({ rcps }) => {

@@ -1,7 +1,7 @@
 import React, { memo, useContext } from 'react';
 import GoogleLogin from 'react-google-login';
 import { UserCtx } from '../../contexts/user.context';
-import { createUserFromJson, IUser } from '../../types';
+import { createUserFromJson, User } from '../../types';
 
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 
@@ -9,7 +9,7 @@ const Login = () => {
   const [, setUser] = useContext(UserCtx);
 
   function responseGoogle(response: any) {
-    const loggedUser: IUser = createUserFromJson(response);
+    const loggedUser: User = createUserFromJson(response);
     setUser(loggedUser);
   }
 

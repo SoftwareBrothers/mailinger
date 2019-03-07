@@ -3,7 +3,7 @@ import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import React, { memo, useContext } from 'react';
+import React, { FunctionComponent, memo, useContext } from 'react';
 import LogoutButton from '../components/Auth/LogoutButton';
 import { UserCtx } from '../contexts/user.context';
 import Login from './Auth/Login';
@@ -22,9 +22,9 @@ const styles = createStyles({
   },
 });
 
-export interface IProps extends WithStyles<typeof styles> {}
+type Props = WithStyles<typeof styles>;
 
-const ButtonAppBar = (props: IProps) => {
+const ButtonAppBar: FunctionComponent<Props> = props => {
   const { classes } = props;
   const [user] = useContext(UserCtx);
 
@@ -36,7 +36,7 @@ const ButtonAppBar = (props: IProps) => {
             {process.env.REACT_APP_NAME}
           </Typography>
           {user ? <Hello /> : <Login />}
-          {user ? <LogoutButton /> : null}
+          {user && <LogoutButton />}
         </Toolbar>
       </AppBar>
     </div>

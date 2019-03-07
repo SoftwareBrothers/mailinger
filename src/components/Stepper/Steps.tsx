@@ -6,8 +6,8 @@ import { getStep } from '../../const/steps';
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 import { StepCtx } from '../../contexts/step.context';
+import { Step } from '../../models';
 import { mailContent } from '../../seeds/mail';
-import { Step } from '../../types';
 import Navigation from './Navigation';
 
 const Steps = () => {

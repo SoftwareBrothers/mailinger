@@ -1,7 +1,6 @@
 import { Base64 } from 'js-base64';
 import client from '../config/gmail.client';
-import { User } from '../types';
-import { Recipient } from '../types';
+import { Recipient, User } from '../models';
 import eml from './GenerateEML';
 
 const send = (recipients: Recipient[], user: User) => {

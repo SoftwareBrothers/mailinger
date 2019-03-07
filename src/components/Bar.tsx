@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-const ButtonAppBar: FunctionComponent = () => {
+const Bar: FunctionComponent = () => {
   const classes = useStyles(styles);
   const [user] = useContext(UserCtx);
 
@@ -36,4 +36,4 @@ const ButtonAppBar: FunctionComponent = () => {
   );
 };
 
-export default memo(ButtonAppBar);
+export default memo(Bar);

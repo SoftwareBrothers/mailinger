@@ -1,3 +1,4 @@
+import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
@@ -5,6 +6,7 @@ import { stateFromHTML } from 'draft-js-import-html';
 import React, { memo, useContext, useState } from 'react';
 import { Editor as Wysiwyg } from 'react-draft-wysiwyg';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { useStyles } from '../../hooks/useStyles';
 import { mailContent } from '../../seeds/mail';
 import DynamicVariables from './DynamicVariables';
 
@@ -19,12 +21,19 @@ const replaceVars = (input: string, spreadsheet: any) => {
   });
 };
 
+const styles = (theme: Theme) => ({
+  root: {
+    padding: theme.spacing.unit * 2,
+  },
+});
+
 const Editor = () => {
   const [spreadsheet] = useContext(SpreadsheetCtx);
   const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailContent)),
   );
   const [preview, setPreview] = useState(replaceVars(mailContent, spreadsheet));
+  const classes = useStyles(styles);
 
   const onChange = (data: any) => {
     setEditor(data);
@@ -34,7 +43,7 @@ const Editor = () => {
   const options = ['fontSize', 'fontFamily', 'list', 'textAlign'];
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className={classes.root}>
       <Grid>
         <DynamicVariables />
         <Wysiwyg

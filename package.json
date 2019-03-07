@@ -20,7 +20,7 @@
     "react-google-login": "^5.0.2",
     "react-google-picker": "^0.1.0",
     "react-scripts": "2.1.8",
-    "typescript": "3.2.4"
+    "typescript": "3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",

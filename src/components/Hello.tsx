@@ -1,13 +1,13 @@
-import {Theme} from "@material-ui/core";
+import { Theme } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import React, { memo, useContext } from 'react';
 import { UserCtx } from '../contexts/user.context';
-import {useStyles} from "../hooks/useStyles";
+import { useStyles } from '../hooks/useStyles';
 
 const styles = (theme: Theme) => ({
-    hello: {
-        marginRight: theme.spacing.unit
-    }
+  hello: {
+    marginRight: theme.spacing.unit,
+  },
 });
 
 const Hello = () => {

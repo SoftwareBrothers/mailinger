@@ -5,14 +5,14 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import React, { memo, useContext, useState } from 'react';
 import { getStep } from '../../const/steps';
 import { StepCtx } from '../../contexts/step.context';
-import {useStyles} from "../../hooks/useStyles";
+import { useStyles } from '../../hooks/useStyles';
 
 const styles = {
   bottomNavigation: {
-      bottom: 0,
-      position: 'fixed' as any,
-      width: '100%',
-  }
+    bottom: 0,
+    position: 'fixed' as any,
+    width: '100%',
+  },
 };
 
 const Navigation = () => {

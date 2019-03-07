@@ -1,7 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import React, { FunctionComponent, memo, useContext } from 'react';
 import LogoutButton from '../components/Auth/LogoutButton';
 import { UserCtx } from '../contexts/user.context';
@@ -36,9 +35,5 @@ const ButtonAppBar: FunctionComponent = () => {
     </div>
   );
 };
-
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
 
 export default memo(ButtonAppBar);

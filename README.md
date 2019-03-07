@@ -1,3 +1,20 @@
+# Mailinger
+This is a system which allow to send many emails to people using a template in WYSIWYG editor and data form the spreadsheet. It has integration with Google API, Gmail API and Spreadsheet API. 
+
+## Getting Started
+Copy env file and edit it appropriately
+```
+cp .env .env.local
+```
+Install dependencies
+```
+yarn
+```
+Run an application
+```
+yarn start
+```
+
 ## License
 
 mailinger is Copyright © 2019 SoftwareBrothers.co. It is free software, and may be redistributed under the terms specified in the [LICENSE](LICENSE) file.

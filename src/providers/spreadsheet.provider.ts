@@ -9,6 +9,7 @@ export class SpreadSheetProvider {
     this.uri = `https://sheets.googleapis.com/v4/spreadsheets`;
     this.client = client;
   }
+
   public provide(id: string) {
     return this.client.get(`${this.uri}/${id}?includeGridData=true`);
   }

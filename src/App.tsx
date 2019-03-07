@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import Bar from './components/Bar';
 import Steps from './components/Stepper/Steps';
 import { UserCtx } from './contexts/user.context';

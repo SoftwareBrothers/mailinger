@@ -24,18 +24,20 @@ export function createUserFromLocalStorage(storageData: IUser): IUser {
   let obj: Partial<IUser> = {};
   obj = {
     ...storageData,
-    token: createUserTokenFromLocalStorage(storageData.token)
-  }
+    token: createUserTokenFromLocalStorage(storageData.token),
+  };
 
   return obj as IUser;
 }
 
-export function createUserTokenFromLocalStorage(storageData: IUserToken): IUserToken {
+export function createUserTokenFromLocalStorage(
+  storageData: IUserToken,
+): IUserToken {
   return {
     ...storageData,
     // Date in LocalStorage is saved as string, we need to recover that back.
-    expiresAt: new Date(storageData.expiresAt as any as string),
-  } as IUserToken
+    expiresAt: new Date((storageData.expiresAt as any) as string),
+  } as IUserToken;
 }
 
 /* JSON transformers */

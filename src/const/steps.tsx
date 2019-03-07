@@ -1,11 +1,11 @@
 import React from 'react';
 import DrivePicker from '../components/DrivePicker';
-import Editor from "../components/Editor/Editor";
-import Sender from "../components/Sender";
-import {IStep} from "../types";
+import Editor from '../components/Editor/Editor';
+import Sender from '../components/Sender';
+import { IStep } from '../types';
 
 export const DrivePickerStep: IStep = {
-  component: <DrivePicker/>,
+  component: <DrivePicker />,
   isBlocked: true,
   number: 0,
 };

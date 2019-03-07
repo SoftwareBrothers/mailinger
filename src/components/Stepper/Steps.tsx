@@ -1,13 +1,13 @@
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
-import React, {memo, useState} from 'react';
-import {getStep} from "../../const/steps";
+import React, { memo, useState } from 'react';
+import { getStep } from '../../const/steps';
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
-import {SpreadsheetCtx} from '../../contexts/spreadsheet.context';
-import {StepCtx} from '../../contexts/step.context';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { StepCtx } from '../../contexts/step.context';
 import { mailContent } from '../../seeds/mail';
-import {IStep} from "../../types";
+import { IStep } from '../../types';
 import Navigation from './Navigation';
 
 const Steps = () => {

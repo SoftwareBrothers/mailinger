@@ -2,10 +2,10 @@ import Grid from '@material-ui/core/Grid';
 import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
-import React, {memo, useContext, useState} from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { Editor as Wysiwyg } from 'react-draft-wysiwyg';
-import {SpreadsheetCtx} from "../../contexts/spreadsheet.context";
-import {mailContent} from "../../seeds/mail";
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { mailContent } from '../../seeds/mail';
 import DynamicVariables from './DynamicVariables';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -24,9 +24,7 @@ const Editor = () => {
   const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailContent)),
   );
-  const [preview, setPreview] = useState(
-    replaceVars(mailContent, spreadsheet),
-  );
+  const [preview, setPreview] = useState(replaceVars(mailContent, spreadsheet));
 
   const onChange = (data: any) => {
     setEditor(data);

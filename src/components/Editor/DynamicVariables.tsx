@@ -1,8 +1,8 @@
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import React, {memo, useContext} from 'react';
-import {SpreadsheetCtx} from "../../contexts/spreadsheet.context";
+import React, { memo, useContext } from 'react';
+import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 
 const DynamicVariables = () => {
   const [spreadsheet] = useContext(SpreadsheetCtx);

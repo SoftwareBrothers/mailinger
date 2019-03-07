@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
-import React, {memo, useContext} from 'react';
-import {MailTemplateCtx} from "../contexts/mail-template.context";
-import {SpreadsheetCtx} from "../contexts/spreadsheet.context";
-import {IUser} from "../types";
-import SendEmailButton from "./SendEmailButton";
+import React, { memo, useContext } from 'react';
+import { MailTemplateCtx } from '../contexts/mail-template.context';
+import { SpreadsheetCtx } from '../contexts/spreadsheet.context';
+import { IUser } from '../types';
+import SendEmailButton from './SendEmailButton';
 import { replaceVars } from './utils';
 
 const Sender = () => {
@@ -15,8 +15,8 @@ const Sender = () => {
       email: user.email,
       data: {
         subject: 'Wystaw fakturę',
-        content: replaceVars(mailTemplate, spreadsheet)
-      }
+        content: replaceVars(mailTemplate, spreadsheet),
+      },
     };
   });
 
@@ -24,7 +24,7 @@ const Sender = () => {
 
   return (
     <Grid item={true} xs={12} style={{ textAlign: 'center' }}>
-      <SendEmailButton rcps={dataToSend}/>
+      <SendEmailButton rcps={dataToSend} />
     </Grid>
   );
 };

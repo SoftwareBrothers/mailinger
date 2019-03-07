@@ -1,5 +1,5 @@
 import Typography from '@material-ui/core/Typography';
-import React, {memo, useContext} from 'react';
+import React, { memo, useContext } from 'react';
 import { UserCtx } from '../contexts/user.context';
 
 const Hello = () => {

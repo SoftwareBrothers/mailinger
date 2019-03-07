@@ -1,6 +1,6 @@
-import {SpreadSheetProvider} from "../providers/spreadsheet.provider";
-import {SpreadSheetTransformer} from "../transformers/spreadsheet.transformer";
-import {ISpreadsheet} from "../types";
+import { SpreadSheetProvider } from '../providers/spreadsheet.provider';
+import { SpreadSheetTransformer } from '../transformers/spreadsheet.transformer';
+import { ISpreadsheet } from '../types';
 
 export default class SpreadSheetService {
   public onFilePicked(data: any, setSpreadsheet: (data: ISpreadsheet) => void) {

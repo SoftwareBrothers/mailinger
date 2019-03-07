@@ -1,11 +1,15 @@
 import { useState } from 'react';
 
 export function useLocalStorage<T>(
-    key: string, initialValue: T, transformMethod?: (value: any) => T
-  ): [T, (value: any) => void, () => void] {
+  key: string,
+  initialValue: T,
+  transformMethod?: (value: any) => T,
+): [T, (value: any) => void, () => void] {
   const [storedValue, setStoredValue] = useState(() => {
     const storeItem = localStorage.getItem(key);
-    const parsedItem = storeItem ? safeJsonParse<typeof initialValue>(storeItem) : initialValue;
+    const parsedItem = storeItem
+      ? safeJsonParse<typeof initialValue>(storeItem)
+      : initialValue;
 
     if (typeof transformMethod === 'function') {
       return parsedItem ? transformMethod(parsedItem) : initialValue;
@@ -15,10 +19,11 @@ export function useLocalStorage<T>(
 
   const setValue = (value: any) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
       setStoredValue(value);
       localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch(error) {
+    } catch (error) {
       // tslint:disable-next-line
       console.warn('Error', error);
     }

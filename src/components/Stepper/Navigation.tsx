@@ -2,13 +2,13 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import React, {memo, useState} from 'react';
+import React, {memo, useContext, useState} from 'react';
 import {getStep} from "../../const/steps";
 import {StepCtx} from "../../contexts/step.context";
 
 const Navigation = () => {
   const [steps] = useState([1, 2, 3]);
-  const [activeStep, setActiveStep] = React.useContext(StepCtx);
+  const [activeStep, setActiveStep] = useContext(StepCtx);
 
   function handleBack() {
     const step = getStep(activeStep.number - 1);

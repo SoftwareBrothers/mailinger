@@ -1,7 +1,7 @@
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {getStep} from "../../const/steps";
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import {SpreadsheetCtx} from '../../contexts/spreadsheet.context';
@@ -11,9 +11,9 @@ import {IStep} from "../../types";
 import Navigation from './Navigation';
 
 const Steps = () => {
-  const [activeStep, setActiveStep] = React.useState<IStep | null>(getStep(0));
-  const [spreadsheet, setSpreadsheet] = React.useState(null);
-  const [mailTemplate, setMailTemplate] = React.useState<string>(mailContent);
+  const [activeStep, setActiveStep] = useState<IStep | null>(getStep(0));
+  const [spreadsheet, setSpreadsheet] = useState(null);
+  const [mailTemplate, setMailTemplate] = useState<string>(mailContent);
 
   const steps = [
     { key: 'choose', label: 'Choose' },

@@ -1,9 +1,11 @@
 import { CssBaseline } from '@material-ui/core';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import React, { memo } from 'react';
 import Bar from './components/Bar';
 import Steps from './components/Stepper/Steps';
 import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
+import theme from './theme/theme';
 import { createUserFromLocalStorage, User } from './types';
 
 const hasTokenExpired = (userObj: User): boolean => {
@@ -22,11 +24,13 @@ function App() {
   }
 
   return (
-    <UserCtx.Provider value={[user, setUser, removeUser]}>
-      <CssBaseline />
-      <Bar />
-      {user ? <Steps /> : null}
-    </UserCtx.Provider>
+    <ThemeProvider theme={theme}>
+      <UserCtx.Provider value={[user, setUser, removeUser]}>
+        <CssBaseline />
+        <Bar />
+        {user ? <Steps /> : null}
+      </UserCtx.Provider>
+    </ThemeProvider>
   );
 }
 

@@ -1,7 +1,5 @@
-import React from 'react';
-
+import React, { memo } from 'react';
 import Bar from './components/Bar';
-import SendEmailButton from './components/SendEmailButton';
 import Steps from './components/Stepper/Steps';
 import { UserCtx } from './contexts/user.context';
 import { useLocalStorage } from './hooks/localstorage.hook';
@@ -32,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

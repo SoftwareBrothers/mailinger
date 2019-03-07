@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IUser, Nullable } from 'src/types';
+import { IUser, Nullable } from '../types';
 
 const googleClient = axios.create({
   baseURL: 'https://www.googleapis.com',

@@ -1,6 +1,6 @@
-import { ISpreadsheet } from 'src/types/spreadsheet';
+import { ISpreadsheet } from '../types';
 
-export class SpreadSheetTransofrmer {
+export class SpreadSheetTransformer {
   public transform(data: any): ISpreadsheet {
     const arrayLike = data.sheets[0].data[0].rowData.map((row: any) => {
       return row.values ? row.values.map((v: any) => v.formattedValue) : [];
@@ -18,6 +18,7 @@ export class SpreadSheetTransofrmer {
       const transformedUserObject = { title };
       userValues.map((userValue: any, index: number) => {
         if (variables[index]) {
+          // @ts-ignore
           transformedUserObject[variables[index]] = userValue || '0';
         }
       });

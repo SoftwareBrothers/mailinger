@@ -1,9 +1,8 @@
 import React from 'react';
-
-import DrivePicker from 'src/components/DrivePicker';
-import Editor from 'src/components/Editor/Editor';
-import Sender from 'src/components/Sender';
-import { IStep } from 'src/types/step';
+import DrivePicker from '../components/DrivePicker';
+import Editor from '../components/Editor/Editor';
+import Sender from '../components/Sender';
+import { IStep } from '../types';
 
 export const DrivePickerStep: IStep = {
   component: <DrivePicker />,

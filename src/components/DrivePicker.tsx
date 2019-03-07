@@ -1,10 +1,12 @@
 import { Button, Grid } from '@material-ui/core';
 import StorageIcon from '@material-ui/icons/Storage';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
+// @ts-ignore
 import GooglePicker from 'react-google-picker';
-import { SpreadsheetCtx } from 'src/contexts/spreadsheet.context';
-import { StepCtx } from 'src/contexts/step.context';
-import SpreadSheetService from 'src/services/spreadsheet.service';
+import { SpreadsheetCtx } from '../contexts/spreadsheet.context';
+import { StepCtx } from '../contexts/step.context';
+import SpreadSheetService from '../services/spreadsheet.service';
+
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 const DEVELOPER_KEY = process.env.REACT_APP_DEVELOPER_KEY || '';
 
@@ -12,7 +14,7 @@ const pickerOnAuthFailed = (error: any) => {
   console.log('Picker auth failed error:', error);
 };
 
-const drivePicker = () => {
+const DrivePicker = () => {
   const [spreadsheet, setSpreadsheet] = useContext(SpreadsheetCtx);
   const [step, setStep] = useContext(StepCtx);
   const service = new SpreadSheetService();
@@ -56,4 +58,4 @@ const drivePicker = () => {
   );
 };
 
-export default drivePicker;
+export default memo(DrivePicker);

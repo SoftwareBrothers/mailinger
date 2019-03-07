@@ -1,13 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-
 import AppBar from '@material-ui/core/AppBar';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import React, { memo, useContext } from 'react';
 import LogoutButton from '../components/Auth/LogoutButton';
 import { UserCtx } from '../contexts/user.context';
-
 import Login from './Auth/Login';
 import Hello from './Hello';
 
@@ -24,11 +22,11 @@ const styles = createStyles({
   },
 });
 
-export interface IProps extends WithStyles<typeof styles> { }
+export interface IProps extends WithStyles<typeof styles> {}
 
 const ButtonAppBar = (props: IProps) => {
   const { classes } = props;
-  const [user] = React.useContext(UserCtx);
+  const [user] = useContext(UserCtx);
 
   return (
     <div className={classes.root}>
@@ -38,7 +36,7 @@ const ButtonAppBar = (props: IProps) => {
             {process.env.REACT_APP_NAME}
           </Typography>
           {user ? <Hello /> : <Login />}
-          {user ? <LogoutButton /> : null }
+          {user ? <LogoutButton /> : null}
         </Toolbar>
       </AppBar>
     </div>
@@ -49,4 +47,4 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(ButtonAppBar);
+export default memo(withStyles(styles)(ButtonAppBar));

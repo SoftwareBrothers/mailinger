@@ -1,9 +1,9 @@
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
+import React, { memo, useContext } from 'react';
 import { UserCtx } from '../contexts/user.context';
 
 const Hello = () => {
-  const [user] = React.useContext(UserCtx);
+  const [user] = useContext(UserCtx);
 
   return (
     <Typography variant="overline" color="inherit" style={{ marginRight: 20 }}>
@@ -12,4 +12,4 @@ const Hello = () => {
   );
 };
 
-export default Hello;
+export default memo(Hello);

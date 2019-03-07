@@ -1,3 +1,4 @@
+import Button from '@material-ui/core/Button';
 import React, { memo, useContext } from 'react';
 import GoogleLogin from 'react-google-login';
 import { UserCtx } from '../../contexts/user.context';
@@ -14,10 +15,17 @@ const Login = () => {
     setUser(loggedUser);
   }
 
+  const renderButton = (renderProps: any) => (
+    <Button variant="contained" color="primary" onClick={renderProps.onClick}>
+      Login
+    </Button>
+  );
+
   return (
     <GoogleLogin
       clientId={CLIENT_ID}
       buttonText="Login"
+      render={renderButton}
       onSuccess={responseGoogle}
       onFailure={responseGoogle}
       scope="profile email https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/drive"

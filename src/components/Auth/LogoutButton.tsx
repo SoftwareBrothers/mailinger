@@ -5,7 +5,7 @@ import { UserCtx } from '../../contexts/user.context';
 const LogoutButton = () => {
   const [, , removeUser] = useContext(UserCtx);
   return (
-    <Button variant="outlined" color="inherit" onClick={removeUser}>
+    <Button variant="contained" color="primary" onClick={removeUser}>
       Log out
     </Button>
   );

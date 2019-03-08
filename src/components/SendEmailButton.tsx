@@ -9,10 +9,12 @@ interface OwnProps {
 }
 
 const SendEmailButton: FunctionComponent<OwnProps> = ({ rcps }) => {
-  const [user] = useContext(UserCtx);
+  const { user } = useContext(UserCtx);
 
   const click = () => {
-    send(rcps, user);
+    if (user) {
+      send(rcps, user);
+    }
   };
 
   return (

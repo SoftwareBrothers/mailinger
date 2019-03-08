@@ -19,7 +19,7 @@ const styles = {
 
 const Bar: FunctionComponent = () => {
   const classes = useStyles(styles);
-  const [user] = useContext(UserCtx);
+  const { user } = useContext(UserCtx);
 
   return (
     <div className={classes.root}>

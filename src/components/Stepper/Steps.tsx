@@ -6,19 +6,11 @@ import { getStep } from '../../const/steps';
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 import { StepCtx } from '../../contexts/step.context';
-import { useStyles } from '../../hooks/useStyles';
 import { Step } from '../../models';
 import { mailContent } from '../../seeds/mail';
 import Navigation from './Navigation';
 
-const styles = {
-  mainContent: {
-    paddingBottom: 56,
-  },
-};
-
 const Steps = () => {
-  const classes = useStyles(styles);
   const [activeStep, setActiveStep] = useState<Step | null>(getStep(0));
   const [spreadsheet, setSpreadsheet] = useState(null);
   const [mailTemplate, setMailTemplate] = useState<string>(mailContent);
@@ -37,20 +29,18 @@ const Steps = () => {
     <SpreadsheetCtx.Provider value={[spreadsheet, setSpreadsheet]}>
       <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
         <StepCtx.Provider value={[activeStep, setActiveStep]}>
-          <div className={classes.mainContent}>
-            <Stepper
-              alternativeLabel={true}
-              nonLinear={true}
-              activeStep={(activeStep && activeStep.number) || undefined}
-            >
-              {steps.map(step => (
-                <MUIStep key={step.key}>
-                  <StepButton>{step.label}</StepButton>
-                </MUIStep>
-              ))}
-            </Stepper>
-            {getComponent()}
-          </div>
+          <Stepper
+            alternativeLabel={true}
+            nonLinear={true}
+            activeStep={(activeStep && activeStep.number) || undefined}
+          >
+            {steps.map(step => (
+              <MUIStep key={step.key}>
+                <StepButton>{step.label}</StepButton>
+              </MUIStep>
+            ))}
+          </Stepper>
+          {getComponent()}
           <Navigation />
         </StepCtx.Provider>
       </MailTemplateCtx.Provider>

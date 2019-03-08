@@ -8,10 +8,8 @@ import { StepCtx } from '../../contexts/step.context';
 import { useStyles } from '../../hooks/useStyles';
 
 const styles = {
-  bottomNavigation: {
-    bottom: 0,
-    position: 'fixed' as any,
-    width: '100%',
+  buttons: {
+    margin: '0 auto',
   },
 };
 
@@ -30,15 +28,9 @@ const Navigation = () => {
   }
 
   return (
-    <BottomNavigation
-      className={classes.bottomNavigation}
-      value={activeStep}
-      showLabels={true}
-    >
+    <BottomNavigation value={activeStep} showLabels={true}>
       <BottomNavigationAction
-        style={{
-          margin: '0 auto',
-        }}
+        className={classes.buttons}
         label="Prev"
         disabled={activeStep.number === 0}
         icon={<NavigateBeforeIcon />}
@@ -47,9 +39,7 @@ const Navigation = () => {
       />
       <BottomNavigationAction
         disabled={activeStep.isBlocked}
-        style={{
-          margin: '0 auto',
-        }}
+        className={classes.buttons}
         label="Next"
         icon={<NavigateNextIcon />}
         onClick={handleNext}

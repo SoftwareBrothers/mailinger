@@ -1,34 +1,47 @@
 import { Button, Grid, TextField } from '@material-ui/core';
-import React from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 import { UserCtx } from '../../contexts/user.context';
+import { useStyles } from '../../hooks/useStyles';
 import send from '../../services/MailSender';
 import { replaceVars } from '../utils';
 import Recipients from './Recipients';
 
-const Sender = () => {
-  const [mailTemplate] = React.useContext(MailTemplateCtx);
-  const [spreadsheet] = React.useContext(SpreadsheetCtx);
-  const [user] = React.useContext(UserCtx);
-  const [subject, setSubject] = React.useState('Proszę o wystawienie Faktury');
+const styles = {
+  center: {
+    textAlign: 'center' as any,
+  },
+  searchInput: {
+    margin: 'auto',
+    width: '90%',
+  },
+};
 
-  const recipients = spreadsheet.usersData.filter((user: any) => user.send);
+const Sender = () => {
+  const [mailTemplate] = useContext(MailTemplateCtx);
+  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const { user } = useContext(UserCtx);
+  const [subject, setSubject] = useState('Proszę o wystawienie Faktury');
+  const classes = useStyles(styles);
+  const recipients = spreadsheet.usersData.filter((data: any) => data.send);
   const dataToSend = recipients.map((userData: any) => {
     if (userData.send) {
       return {
-        email: userData.email,
         data: {
-          subject,
           content: replaceVars(mailTemplate, userData),
+          subject,
         },
+        email: userData.email,
       };
     }
     return;
   });
 
-  const SendEmails = () => {
-    send(dataToSend, user);
+  const sendEmails = () => {
+    if (user !== undefined) {
+      send(dataToSend, user);
+    }
   };
 
   const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,13 +49,13 @@ const Sender = () => {
   };
 
   return (
-    <Grid item={true} xs={12} style={{ textAlign: 'center' }}>
+    <Grid item={true} xs={12} className={classes.center}>
       <TextField
         id="standard-search"
         label="Email Title"
         type="search"
         margin="normal"
-        style={{ width: '90%', margin: 'auto' }}
+        className={classes.searchInput}
         value={subject}
         onChange={changeTitle}
       />
@@ -50,8 +63,8 @@ const Sender = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={SendEmails}
-        disabled={!recipients.length}
+        onClick={sendEmails}
+        // disabled={!recipients.length}
       >
         Send
       </Button>
@@ -59,4 +72,4 @@ const Sender = () => {
   );
 };
 
-export default Sender;
+export default memo(Sender);

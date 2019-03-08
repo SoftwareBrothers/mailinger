@@ -5,11 +5,19 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
-import React from 'react';
+import React, { useContext } from 'react';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
+import { useStyles } from '../../hooks/useStyles';
+
+const styles = {
+  center: {
+    textAlign: 'center' as any,
+  },
+};
 
 const Recipients = () => {
-  const [spreadsheet, setSpreadsheet] = React.useContext(SpreadsheetCtx);
+  const classes = useStyles(styles);
+  const [spreadsheet, setSpreadsheet] = useContext(SpreadsheetCtx);
 
   function onChange(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -27,7 +35,7 @@ const Recipients = () => {
     return (
       <Grid container={true}>
         <Grid item={true} md={3} />
-        <Grid item={true} xs={12} md={6} style={{ textAlign: 'center' }}>
+        <Grid item={true} xs={12} md={6} className={classes.center}>
           <List>
             {spreadsheet.usersData.map((userData: any) => (
               <ListItem

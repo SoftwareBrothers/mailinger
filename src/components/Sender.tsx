@@ -14,7 +14,7 @@ const styles = {
 };
 
 const Sender = () => {
-  const mailTemplate = useContext(MailTemplateCtx);
+  const [mailTemplate] = useContext(MailTemplateCtx);
   const [spreadsheet] = useContext(SpreadsheetCtx);
   const classes = useStyles(styles);
 

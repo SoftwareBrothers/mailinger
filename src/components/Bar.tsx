@@ -14,6 +14,7 @@ const styles = {
   },
   root: {
     flexGrow: 1,
+    marginBottom: '1rem',
   },
 };
 

@@ -7,7 +7,7 @@ import { createUserFromJson } from '../../transformers/user.transformer';
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 
 const Login = () => {
-  const [, setUser] = useContext(UserCtx);
+  const { setUser } = useContext(UserCtx);
 
   function responseGoogle(response: any) {
     const loggedUser: User = createUserFromJson(response);

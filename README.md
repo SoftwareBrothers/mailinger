@@ -1,5 +1,5 @@
 # Mailinger
-This is a system which allow to send many emails to people using a template in WYSIWYG editor and data form the spreadsheet. It has integration with Google API, Gmail API and Spreadsheet API. 
+This is a system which allow to send many emails to people using a template in WYSIWYG editor and data from the spreadsheet. It has integration with Google API, Gmail API and Spreadsheet API. 
 
 ## Getting Started
 Copy env file and edit it appropriately
@@ -10,7 +10,7 @@ Install dependencies
 ```
 yarn
 ```
-Run an application
+Run the application
 ```
 yarn start
 ```

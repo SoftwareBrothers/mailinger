@@ -11,8 +11,12 @@ const styles = (theme: Theme) => ({
 });
 
 const Hello = () => {
-  const [user] = useContext(UserCtx);
+  const { user } = useContext(UserCtx);
   const classes = useStyles(styles);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Typography variant="overline" color="inherit" className={classes.hello}>

@@ -26,7 +26,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <UserCtx.Provider value={[user, setUser, removeUser]}>
+      <UserCtx.Provider value={{user, setUser, removeUser}}>
         <CssBaseline />
         <Bar />
         {user ? <Steps /> : null}

@@ -1,7 +1,7 @@
 import React from 'react';
 import DrivePicker from '../components/DrivePicker';
 import Editor from '../components/Editor/Editor';
-import Sender from '../components/Sender';
+import Sender from '../components/Sender/Sender';
 import { Step } from '../models';
 
 export const DrivePickerStep: Step = {
@@ -18,7 +18,7 @@ export const EditorStep: Step = {
 
 export const SenderStep: Step = {
   component: <Sender />,
-  isBlocked: false,
+  isBlocked: true,
   number: 2,
 };
 

@@ -22,6 +22,8 @@ export class SpreadSheetTransformer {
           transformedUserObject[variables[index]] = userValue || '0';
         }
       });
+      // @ts-ignore
+      transformedUserObject.send = true;
       return transformedUserObject;
     });
 

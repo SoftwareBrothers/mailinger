@@ -5,17 +5,19 @@ import eml from './GenerateEML';
 
 const send = (recipients: Recipient[], user: User) => {
   for (const recipient of recipients) {
-    const stream = eml(recipient, user);
-    const data = Base64.encodeURI(stream);
+    if (recipient) {
+      const stream = eml(recipient, user);
+      const data = Base64.encodeURI(stream);
 
-    client
-      .post('/gmail/v1/users/me/messages/send', { raw: data })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      client
+        .post('/gmail/v1/users/me/messages/send', { raw: data })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 };
 

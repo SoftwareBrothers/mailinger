@@ -7,19 +7,12 @@ import React, { memo, useContext, useState } from 'react';
 import { Editor as Wysiwyg } from 'react-draft-wysiwyg';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 import { useStyles } from '../../hooks/useStyles';
-import { mailContent } from '../../seeds/mail';
 import DynamicVariables from './DynamicVariables';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { MailTemplateCtx } from '../../contexts/mail-template.context';
 
-const replaceVars = (input: string, spreadsheet: any) => {
-  return input.replace(/\[(.*?)\]/g, (match, p1) => {
-    if (spreadsheet && spreadsheet.usersData) {
-      return spreadsheet.usersData[0][p1];
-    }
-    return match;
-  });
-};
+import { replaceVars } from '../utils';
 
 const styles = (theme: Theme) => ({
   root: {
@@ -28,16 +21,25 @@ const styles = (theme: Theme) => ({
 });
 
 const Editor = () => {
+  const [mailTemplate, setMailTemplate] = useContext(MailTemplateCtx);
   const [spreadsheet] = useContext(SpreadsheetCtx);
   const [editor, setEditor] = useState(
-    EditorState.createWithContent(stateFromHTML(mailContent)),
+    EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );
-  const [preview, setPreview] = useState(replaceVars(mailContent, spreadsheet));
+  const [preview, setPreview] = useState(
+    replaceVars(mailTemplate, spreadsheet.usersData[0]),
+  );
   const classes = useStyles(styles);
 
   const onChange = (data: any) => {
     setEditor(data);
-    setPreview(replaceVars(stateToHTML(data.getCurrentContent()), spreadsheet));
+    setMailTemplate(stateToHTML(data.getCurrentContent()));
+    setPreview(
+      replaceVars(
+        stateToHTML(data.getCurrentContent()),
+        spreadsheet.usersData[0],
+      ),
+    );
   };
 
   const options = ['fontSize', 'fontFamily', 'list', 'textAlign'];

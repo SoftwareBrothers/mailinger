@@ -1,4 +1,5 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 const primaryColor = '#e6282b';

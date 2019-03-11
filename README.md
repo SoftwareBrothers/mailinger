@@ -15,6 +15,20 @@ Run the application
 yarn start
 ```
 
+## Tests
+
+If you want to run tests in development mode, simply run `yarn test`. It will run tests for files that has been changed since last commit. It will run tests in `--watch` mode. 
+You can also do one-time run with code coverage of all tests, run `yarn coverage`.
+
+### How to setup test runner in IntelliJ IDEA / PHPStorm / WebStorm?
+
+1. Click `Add Configurations`
+2. Click `+` on the top-left corner of the screen, then select `Jest`
+3. Give it a good name, like `All Tests`
+3. Click 'Ok'
+
+That's it! Now you have 3 icons available: `Run 'All Tests'`, `Debug 'All Tests'` and `Run 'All Tests' with Coverage`. Click on the last one and see that project tree will now have information about code coverage!
+
 ## License
 
 mailinger is Copyright © 2019 SoftwareBrothers.co. It is free software, and may be redistributed under the terms specified in the [LICENSE](LICENSE) file.

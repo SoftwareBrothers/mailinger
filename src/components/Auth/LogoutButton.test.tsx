@@ -10,7 +10,7 @@ describe('LogoutButton', () => {
     contextRender()(<LogoutButton />);
   });
 
-  it('calls "setUser" when button is clicked', () => {
+  it('calls "removeUser" when button is clicked', () => {
     const {
       render: { getByText },
       userContext: { removeUser },

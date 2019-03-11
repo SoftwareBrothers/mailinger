@@ -22,7 +22,7 @@ const styles = (theme: Theme) => ({
 
 const Editor = () => {
   const [mailTemplate, setMailTemplate] = useContext(MailTemplateCtx);
-  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const { spreadsheet } = useContext(SpreadsheetCtx);
   const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );

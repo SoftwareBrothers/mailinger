@@ -17,7 +17,7 @@ const styles = {
 
 const Recipients = () => {
   const classes = useStyles(styles);
-  const [spreadsheet, setSpreadsheet] = useContext(SpreadsheetCtx);
+  const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
 
   function onChange(
     event: React.ChangeEvent<HTMLInputElement>,

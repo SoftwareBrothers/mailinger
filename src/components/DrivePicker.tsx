@@ -31,7 +31,7 @@ const styles = (theme: Theme) => ({
 });
 
 const DrivePicker = () => {
-  const [spreadsheet, setSpreadsheet] = useContext(SpreadsheetCtx);
+  const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
   const [step, setStep] = useContext(StepCtx);
   const classes = useStyles(styles);
   const service = new SpreadSheetService();

@@ -26,7 +26,7 @@ const Steps = () => {
   }
 
   return (
-    <SpreadsheetCtx.Provider value={[spreadsheet, setSpreadsheet]}>
+    <SpreadsheetCtx.Provider value={{spreadsheet, setSpreadsheet}}>
       <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
         <StepCtx.Provider value={[activeStep, setActiveStep]}>
           <Stepper

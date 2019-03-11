@@ -14,6 +14,7 @@ const styles = {
   },
   root: {
     flexGrow: 1,
+    marginBottom: '1rem',
   },
 };
 
@@ -23,7 +24,7 @@ const Bar: FunctionComponent = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="h6" color="inherit" className={classes.grow}>
             {process.env.REACT_APP_NAME}

@@ -5,7 +5,7 @@ cache:
   directories:
     - node_modules
 script:
-  - yarn global all codecov
+  - yarn global add codecov
   - yarn coverage
 after_success:
   - codecov

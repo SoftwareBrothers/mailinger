@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "react-scripts test --coverage",
+    "coverage": "react-scripts test --coverage && cat ./coverage/lcov.info | coverall",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,6 +43,7 @@
     "@types/draft-js": "^0.10.29",
     "@types/js-base64": "^2.3.1",
     "@types/react-draft-wysiwyg": "^1.12.2",
+    "coveralls": "^3.0.3",
     "prettier": "^1.16.4",
     "react-testing-library": "^6.0.0",
     "tslint": "^5.13.1",

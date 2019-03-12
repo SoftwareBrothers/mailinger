@@ -25,7 +25,7 @@ const Bar: FunctionComponent = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
-        <Toolbar>
+        <Toolbar data-testid="toolbar">
           <Typography variant="h6" color="inherit" className={classes.grow}>
             {process.env.REACT_APP_NAME}
           </Typography>

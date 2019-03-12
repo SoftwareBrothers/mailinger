@@ -19,7 +19,12 @@ const Hello = () => {
   }
 
   return (
-    <Typography variant="overline" color="inherit" className={classes.hello}>
+    <Typography
+      variant="overline"
+      color="inherit"
+      className={classes.hello}
+      data-testid="hello-content"
+    >
       Hello, {user.name}
     </Typography>
   );

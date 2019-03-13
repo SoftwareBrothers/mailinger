@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SoftwareBrothers/mailinger.svg?branch=master)](https://travis-ci.org/SoftwareBrothers/mailinger)
+[![codecov](https://codecov.io/gh/SoftwareBrothers/mailinger/branch/master/graph/badge.svg)](https://codecov.io/gh/SoftwareBrothers/mailinger)
 # Mailinger
 This is a system which allow to send many emails to people using a template in WYSIWYG editor and data from the spreadsheet. It has integration with Google API, Gmail API and Spreadsheet API. 
 

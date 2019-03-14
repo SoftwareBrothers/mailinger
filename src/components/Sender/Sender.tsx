@@ -20,7 +20,7 @@ const styles = {
 
 const Sender = () => {
   const [mailTemplate] = useContext(MailTemplateCtx);
-  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const { spreadsheet } = useContext(SpreadsheetCtx);
   const { user } = useContext(UserCtx);
   const [subject, setSubject] = useState('Proszę o wystawienie Faktury');
   const classes = useStyles(styles);

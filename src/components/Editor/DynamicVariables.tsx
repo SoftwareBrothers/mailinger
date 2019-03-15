@@ -19,7 +19,7 @@ const styles = (theme: Theme) => ({
 });
 
 const DynamicVariables = () => {
-  const [spreadsheet] = useContext(SpreadsheetCtx);
+  const { spreadsheet } = useContext(SpreadsheetCtx);
   const classes = useStyles(styles);
   const variables: string[] = (spreadsheet && spreadsheet.variables) || [];
 

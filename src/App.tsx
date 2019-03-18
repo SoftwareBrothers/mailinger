@@ -1,6 +1,7 @@
 import { CssBaseline } from '@material-ui/core';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import { SnackbarProvider } from 'notistack';
 import React, { memo } from 'react';
 import Bar from './components/Bar';
 import Steps from './components/Stepper/Steps';
@@ -26,15 +27,17 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <MuiThemeProvider theme={theme}>
-          <UserCtx.Provider value={{user, setUser, removeUser}}>
-          <CssBaseline />
-          <Bar />
-          {user ? <Steps /> : null}
-        </UserCtx.Provider>
-      </MuiThemeProvider>
-    </ThemeProvider>
+    <SnackbarProvider>
+      <ThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
+          <UserCtx.Provider value={{ user, setUser, removeUser }}>
+            <CssBaseline />
+            <Bar />
+            {user ? <Steps /> : null}
+          </UserCtx.Provider>
+        </MuiThemeProvider>
+      </ThemeProvider>
+    </SnackbarProvider>
   );
 }
 

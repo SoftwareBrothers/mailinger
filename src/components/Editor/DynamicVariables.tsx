@@ -8,13 +8,13 @@ import { useStyles } from '../../hooks/useStyles';
 
 const styles = (theme: Theme) => ({
   chip: {
-    marginBottom: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit,
+    marginBottom: `${theme.spacing(1)}px`,
+    marginRight: `${theme.spacing(1)}px`,
+    marginTop: `${theme.spacing(1)}px`,
   },
   paper: {
-    margin: `${theme.spacing.unit} 0`,
-    padding: theme.spacing.unit,
+    margin: `${theme.spacing(1)}px 0`,
+    padding: `${theme.spacing(1)}px`,
   },
 });
 

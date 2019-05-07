@@ -16,7 +16,7 @@ import { replaceVars } from '../utils';
 
 const styles = (theme: Theme) => ({
   root: {
-    padding: theme.spacing.unit * 2,
+    padding: `${theme.spacing(2)}px`
   },
 });
 

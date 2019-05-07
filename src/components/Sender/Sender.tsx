@@ -1,5 +1,7 @@
 import { Button, Grid, TextField } from '@material-ui/core';
-import React, { memo, useContext, useState } from 'react';
+import { withSnackbar } from 'notistack';
+import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
 import { MailTemplateCtx } from '../../contexts/mail-template.context';
 import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
 import { UserCtx } from '../../contexts/user.context';
@@ -18,7 +20,7 @@ const styles = {
   },
 };
 
-const Sender = () => {
+const Sender = (props: any) => {
   const [mailTemplate] = useContext(MailTemplateCtx);
   const { spreadsheet } = useContext(SpreadsheetCtx);
   const { user } = useContext(UserCtx);
@@ -40,7 +42,12 @@ const Sender = () => {
 
   const sendEmails = () => {
     if (user !== undefined) {
-      send(dataToSend, user);
+      for (const recipient of dataToSend) {
+        send(recipient, user);
+        props.enqueueSnackbar(`Email to: ${recipient.email} was sended!`, {
+          variant: 'success',
+        });
+      }
     }
   };
 
@@ -60,16 +67,15 @@ const Sender = () => {
         onChange={changeTitle}
       />
       <Recipients />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={sendEmails}
-        // disabled={!recipients.length}
-      >
+      <Button variant="contained" color="primary" onClick={sendEmails}>
         Send
       </Button>
     </Grid>
   );
 };
 
-export default memo(Sender);
+Sender.propTypes = {
+  enqueueSnackbar: PropTypes.func.isRequired,
+};
+
+export default withSnackbar(Sender);

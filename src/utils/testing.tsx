@@ -1,4 +1,3 @@
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import React, { ReactElement } from 'react';
 import { render } from 'react-testing-library';
@@ -15,9 +14,7 @@ const contextRender = (userContext: UserContext = defaultUserContext) => (
 ) => {
   const app = (
     <ThemeProvider theme={theme}>
-      <MuiThemeProvider theme={theme}>
-        <UserCtx.Provider value={userContext}>{element}</UserCtx.Provider>
-      </MuiThemeProvider>
+      <UserCtx.Provider value={userContext}>{element}</UserCtx.Provider>
     </ThemeProvider>
   );
 

@@ -6,7 +6,7 @@ import { useStyles } from '../hooks/useStyles';
 
 const styles = (theme: Theme) => ({
   hello: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
 });
 

@@ -26,7 +26,7 @@ const styles = (theme: Theme) => ({
     textAlign: 'center' as any,
   },
   storageIcon: {
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
   },
 });
 

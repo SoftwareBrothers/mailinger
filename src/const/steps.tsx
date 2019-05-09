@@ -1,8 +1,8 @@
+import DrivePicker from 'components/DrivePicker';
+import Editor from 'components/Editor/Editor';
+import Sender from 'components/Sender/Sender';
+import { Step } from 'models';
 import React from 'react';
-import DrivePicker from '../components/DrivePicker';
-import Editor from '../components/Editor/Editor';
-import Sender from '../components/Sender/Sender';
-import { Step } from '../models';
 
 export const DrivePickerStep: Step = {
   component: <DrivePicker />,

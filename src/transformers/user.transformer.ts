@@ -1,4 +1,4 @@
-import { User, UserToken } from '../models';
+import { User, UserToken } from 'models';
 
 export function createUserFromLocalStorage(storageData: User): User {
   const obj: Partial<User> = {

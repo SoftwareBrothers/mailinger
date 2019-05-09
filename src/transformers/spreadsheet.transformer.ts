@@ -1,4 +1,4 @@
-import { Spreadsheet } from '../models';
+import { Spreadsheet } from 'models';
 
 export class SpreadSheetTransformer {
   public transform(data: any): Spreadsheet {

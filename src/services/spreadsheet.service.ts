@@ -1,6 +1,6 @@
-import { Spreadsheet } from '../models';
-import { SpreadSheetProvider } from '../providers/spreadsheet.provider';
-import { SpreadSheetTransformer } from '../transformers/spreadsheet.transformer';
+import { Spreadsheet } from 'models';
+import { SpreadSheetProvider } from 'providers/spreadsheet.provider';
+import { SpreadSheetTransformer } from 'transformers/spreadsheet.transformer';
 
 export default class SpreadSheetService {
   public onFilePicked(data: any, setSpreadsheet: (data: Spreadsheet) => void) {

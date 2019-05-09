@@ -1,12 +1,12 @@
 import { Button, Grid, Theme } from '@material-ui/core';
 import StorageIcon from '@material-ui/icons/Storage';
+import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
+import { StepCtx } from 'contexts/step.context';
+import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';
 // @ts-ignore
 import GooglePicker from 'react-google-picker';
-import { SpreadsheetCtx } from '../contexts/spreadsheet.context';
-import { StepCtx } from '../contexts/step.context';
-import { useStyles } from '../hooks/useStyles';
-import SpreadSheetService from '../services/spreadsheet.service';
+import SpreadSheetService from 'services/spreadsheet.service';
 
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 const DEVELOPER_KEY = process.env.REACT_APP_DEVELOPER_KEY || '';

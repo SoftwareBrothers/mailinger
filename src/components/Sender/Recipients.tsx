@@ -5,9 +5,9 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
+import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
+import { useStyles } from 'hooks/useStyles';
 import React, { useContext } from 'react';
-import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
-import { useStyles } from '../../hooks/useStyles';
 
 const styles = {
   center: {

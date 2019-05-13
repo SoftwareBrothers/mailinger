@@ -2,10 +2,10 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { getStep } from 'const/steps';
+import { StepCtx } from 'contexts/step.context';
+import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';
-import { getStep } from '../../const/steps';
-import { StepCtx } from '../../contexts/step.context';
-import { useStyles } from '../../hooks/useStyles';
 
 const styles = {
   buttons: {

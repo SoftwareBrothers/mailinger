@@ -1,5 +1,5 @@
+import { User } from 'models';
 import { createContext } from 'react';
-import { User } from '../models';
 
 export interface UserContext {
   readonly setUser: (user: User) => void;

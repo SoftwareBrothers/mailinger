@@ -1,22 +1,20 @@
 import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import { replaceVars } from 'components/utils';
+import { MailTemplateCtx } from 'contexts/mail-template.context';
+import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
 import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
+import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext, useState } from 'react';
 import { Editor as Wysiwyg } from 'react-draft-wysiwyg';
-import { SpreadsheetCtx } from '../../contexts/spreadsheet.context';
-import { useStyles } from '../../hooks/useStyles';
-import DynamicVariables from './DynamicVariables';
-
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { MailTemplateCtx } from '../../contexts/mail-template.context';
-
-import { replaceVars } from '../utils';
+import DynamicVariables from './DynamicVariables';
 
 const styles = (theme: Theme) => ({
   root: {
-    padding: `${theme.spacing(2)}px`
+    padding: `${theme.spacing(2)}px`,
   },
 });
 

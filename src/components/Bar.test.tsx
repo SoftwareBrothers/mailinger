@@ -1,8 +1,8 @@
+import { UserContext } from 'contexts/user.context';
+import { User } from 'models';
 import React from 'react';
 import { cleanup } from 'react-testing-library';
-import { UserContext } from '../contexts/user.context';
-import { User } from '../models';
-import { contextRender } from '../utils/testing';
+import { contextRender } from 'utils/testing';
 import Bar from './Bar';
 
 const dummyUser: User = {

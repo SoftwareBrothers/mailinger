@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from 'react-testing-library';
-import { contextRender } from '../../utils/testing';
+import { contextRender } from 'utils/testing';
 import LogoutButton from './LogoutButton';
 
 describe('LogoutButton', () => {

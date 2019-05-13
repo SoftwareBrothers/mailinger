@@ -1,8 +1,8 @@
 import { Theme } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import { UserCtx } from 'contexts/user.context';
+import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';
-import { UserCtx } from '../contexts/user.context';
-import { useStyles } from '../hooks/useStyles';
 
 const styles = (theme: Theme) => ({
   hello: {

@@ -1,7 +1,7 @@
 import { Spreadsheet } from 'models';
 import { SpreadSheetProvider } from 'providers/spreadsheet.provider';
 import { SpreadSheetTransformer } from 'transformers/spreadsheet.transformer';
-import { DriveState } from '../components/DrivePicker';
+import { DriveState } from 'components/DrivePicker';
 
 export default class SpreadSheetService {
   public onFilePicked(

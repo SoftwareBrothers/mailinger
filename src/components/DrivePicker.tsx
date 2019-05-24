@@ -31,34 +31,28 @@ const styles = (theme: Theme) => ({
   },
 });
 
-export enum PickerStatus {
+export enum DriveState{
   READY  = 'ready',
-  PICKED = 'picked'
+  LOADING = 'picked'
 };
 
 const DrivePicker = () => {
   const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
   const [step, setStep] = useContext(StepCtx);
-  const [isDocLoading, setIsDocLoading] = useState(false);
+  const [driveState, setDriveState] = useState(DriveState.READY);
   const classes = useStyles(styles);
   const service = new SpreadSheetService();
 
   const onChange = async (data: any) => {
     const result = await service.onFilePicked(
-      driveStatusChanged,
+      setDriveState,
       data,
       setSpreadsheet,
     );
     if (result) {
-      setIsDocLoading(false);
+      setDriveState(DriveState.READY);
       const currentStep = { ...step, isBlocked: false };
       setStep(currentStep);
-    }
-  };
-
-  const driveStatusChanged = (status: any) => {
-    if (status === PickerStatus.PICKED) {
-      setIsDocLoading(true);
     }
   };
 
@@ -78,13 +72,13 @@ const DrivePicker = () => {
         onChange={onChange}
         onAuthFailed={pickerOnAuthFailed}
       >
-        {!isDocLoading ? (
+        {driveState === DriveState.LOADING ? (
+          <CircularProgress />
+        ) : (
           <Button variant="contained" size="large">
             <StorageIcon className={classes.storageIcon} />
             Select File
           </Button>
-        ) : (
-          <CircularProgress />
         )}
       </GooglePicker>
       {renderEmbed()}

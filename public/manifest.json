@@ -1,15 +1,21 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "manifest_version": 2,
+  "name": "Mailinger",
+  "description": "Send emails to contacts stored in your Google Spreadsheet including data kept in tables using your Gmail email address.",
+  "version": "0.0.1",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "16": "ext_icon.png",
+    "32": "ext_icon.png",
+    "48": "ext_icon.png",
+    "128": "ext_icon.png"
+  },
+  "browser_action": {
+    "default_icon" : "ext_icon.png",
+    "default_title": "Mailinger default title"
+  },
+  "permissions": ["tabs"],
+  "content_security_policy": "script-src 'self' https://apis.google.com/js/api.js https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.pl.7x9YfPimdxM.O/m=auth2/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCOn30VKRzs3INlM3U0f75AvLN-wMA/cb=gapi.loaded_0; object-src 'self'"
 }

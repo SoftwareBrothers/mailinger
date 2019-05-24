@@ -31,16 +31,16 @@ const styles = (theme: Theme) => ({
   },
 });
 
+enum PickerStatus {
+  PICKED = 'picked'
+};
+
 const DrivePicker = () => {
   const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
   const [step, setStep] = useContext(StepCtx);
   const [isDocLoading, setIsDocLoading] = useState(false);
   const classes = useStyles(styles);
   const service = new SpreadSheetService();
-  const pickerStatus = {
-    LOADED : 'loaded',
-    PICKED : 'picked'
-  };
 
   const onChange = async (data: any) => {
     const result = await service.onFilePicked(driveStatusChanged, data, setSpreadsheet);
@@ -52,7 +52,7 @@ const DrivePicker = () => {
   };
 
   const driveStatusChanged = (status: any) => {
-    if (status === pickerStatus.PICKED) {
+    if (status === PickerStatus.PICKED) {
       setIsDocLoading(true);
     }
   };

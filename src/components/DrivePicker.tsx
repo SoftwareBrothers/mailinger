@@ -31,7 +31,8 @@ const styles = (theme: Theme) => ({
   },
 });
 
-enum PickerStatus {
+export enum PickerStatus {
+  READY  = 'ready',
   PICKED = 'picked'
 };
 

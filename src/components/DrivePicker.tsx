@@ -43,7 +43,11 @@ const DrivePicker = () => {
   const service = new SpreadSheetService();
 
   const onChange = async (data: any) => {
-    const result = await service.onFilePicked(driveStatusChanged, data, setSpreadsheet);
+    const result = await service.onFilePicked(
+      driveStatusChanged,
+      data,
+      setSpreadsheet,
+    );
     if (result) {
       setIsDocLoading(false);
       const currentStep = { ...step, isBlocked: false };
@@ -73,11 +77,14 @@ const DrivePicker = () => {
         onChange={onChange}
         onAuthFailed={pickerOnAuthFailed}
       >
-        { !isDocLoading ? <Button variant="contained" size="large">
-          <StorageIcon className={classes.storageIcon} />
-          Select File
-        </Button> : null }
-        { isDocLoading ? <CircularProgress /> : null }
+        {!isDocLoading ? (
+          <Button variant="contained" size="large">
+            <StorageIcon className={classes.storageIcon} />
+            Select File
+          </Button>
+        ) : (
+          <CircularProgress />
+        )}
       </GooglePicker>
       {renderEmbed()}
     </Grid>

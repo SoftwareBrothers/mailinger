@@ -1,6 +1,7 @@
 import { Spreadsheet } from 'models';
 import { SpreadSheetProvider } from 'providers/spreadsheet.provider';
 import { SpreadSheetTransformer } from 'transformers/spreadsheet.transformer';
+import { PickerStatus } from '../components/DrivePicker';
 
 export default class SpreadSheetService {
   public onFilePicked(
@@ -23,6 +24,7 @@ export default class SpreadSheetService {
           })
           .catch(error => {
             console.log('Error while parsing document', error);
+            driveStatusChanged(PickerStatus.READY);
             reject(null);
           });
       }

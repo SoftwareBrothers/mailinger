@@ -1,4 +1,4 @@
-import { UserContext } from 'contexts/user.context';
+import { UserContext } from 'context/user.context';
 import { User } from 'models';
 import React from 'react';
 import { cleanup } from 'react-testing-library';

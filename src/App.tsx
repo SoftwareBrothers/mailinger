@@ -2,7 +2,7 @@ import { CssBaseline } from '@material-ui/core';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import Bar from 'components/Bar';
 import Steps from 'components/Stepper/Steps';
-import { UserCtx } from 'contexts/user.context';
+import { UserCtx } from 'context/user.context';
 import { useLocalStorage } from 'hooks/localstorage.hook';
 import { User } from 'models';
 import React, { memo } from 'react';

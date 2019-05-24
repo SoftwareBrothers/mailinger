@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
+import { SpreadsheetCtx } from 'context/spreadsheet.context';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';
 

@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import { UserCtx } from 'contexts/user.context';
+import { UserCtx } from 'context/user.context';
 import { User } from 'models';
 import React, { memo, useContext } from 'react';
 import GoogleLogin from 'react-google-login';

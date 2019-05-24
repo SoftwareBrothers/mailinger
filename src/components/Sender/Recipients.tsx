@@ -5,7 +5,7 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
-import { SpreadsheetCtx } from 'context/spreadsheet.context';
+import { SpreadsheetCtx } from 'context/spreadsheet';
 import { useStyles } from 'hooks/useStyles';
 import React, { useContext } from 'react';
 

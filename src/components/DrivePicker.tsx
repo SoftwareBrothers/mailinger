@@ -1,6 +1,6 @@
 import { Button, Grid, Theme } from '@material-ui/core';
 import StorageIcon from '@material-ui/icons/Storage';
-import { SpreadsheetCtx } from 'context/spreadsheet.context';
+import { SpreadsheetCtx } from 'context/spreadsheet';
 import { StepCtx } from 'context/step.context';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';

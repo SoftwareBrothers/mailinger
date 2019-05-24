@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { replaceVars } from 'components/utils';
 import { MailTemplateCtx } from 'context/mail-template';
-import { SpreadsheetCtx } from 'context/spreadsheet.context';
+import { SpreadsheetCtx } from 'context/spreadsheet';
 import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';

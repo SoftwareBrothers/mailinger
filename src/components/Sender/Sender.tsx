@@ -1,7 +1,7 @@
 import { Button, Grid, TextField } from '@material-ui/core';
 import { replaceVars } from 'components/utils';
 import { MailTemplateCtx } from 'context/mail-template';
-import { SpreadsheetCtx } from 'context/spreadsheet.context';
+import { SpreadsheetCtx } from 'context/spreadsheet';
 import { UserCtx } from 'context/user.context';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext, useState } from 'react';

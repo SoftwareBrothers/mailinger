@@ -8,6 +8,7 @@ import React, { memo, useContext, useState } from 'react';
 // @ts-ignore
 import GooglePicker from 'react-google-picker';
 import SpreadSheetService from 'services/spreadsheet.service';
+import DocTabsRadioSection from './DocTabsRadio/DocTabsRadioSection';
 
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_ID || '';
 const DEVELOPER_KEY = process.env.REACT_APP_DEVELOPER_KEY || '';
@@ -82,6 +83,9 @@ const DrivePicker = () => {
         )}
       </GooglePicker>
       {renderEmbed()}
+
+      { spreadsheet && spreadsheet.sheets ? <DocTabsRadioSection spreadsheet={spreadsheet}/> : null }
+
     </Grid>
   );
 };

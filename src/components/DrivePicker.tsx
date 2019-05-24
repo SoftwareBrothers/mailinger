@@ -1,9 +1,10 @@
 import { Button, Grid, Theme } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import StorageIcon from '@material-ui/icons/Storage';
 import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
 import { StepCtx } from 'contexts/step.context';
 import { useStyles } from 'hooks/useStyles';
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useState } from 'react';
 // @ts-ignore
 import GooglePicker from 'react-google-picker';
 import SpreadSheetService from 'services/spreadsheet.service';
@@ -30,15 +31,26 @@ const styles = (theme: Theme) => ({
   },
 });
 
+export enum DriveState{
+  READY  = 'ready',
+  LOADING = 'picked'
+};
+
 const DrivePicker = () => {
   const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
   const [step, setStep] = useContext(StepCtx);
+  const [driveState, setDriveState] = useState(DriveState.READY);
   const classes = useStyles(styles);
   const service = new SpreadSheetService();
 
   const onChange = async (data: any) => {
-    const result = await service.onFilePicked(data, setSpreadsheet);
+    const result = await service.onFilePicked(
+      setDriveState,
+      data,
+      setSpreadsheet,
+    );
     if (result) {
+      setDriveState(DriveState.READY);
       const currentStep = { ...step, isBlocked: false };
       setStep(currentStep);
     }
@@ -60,10 +72,14 @@ const DrivePicker = () => {
         onChange={onChange}
         onAuthFailed={pickerOnAuthFailed}
       >
-        <Button variant="contained" size="large">
-          <StorageIcon className={classes.storageIcon} />
-          Select File
-        </Button>
+        {driveState === DriveState.LOADING ? (
+          <CircularProgress />
+        ) : (
+          <Button variant="contained" size="large">
+            <StorageIcon className={classes.storageIcon} />
+            Select File
+          </Button>
+        )}
       </GooglePicker>
       {renderEmbed()}
     </Grid>

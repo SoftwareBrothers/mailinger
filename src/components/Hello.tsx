@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import { UserCtx } from 'context/user.context';
+import { UserCtx } from 'context/user';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';
 

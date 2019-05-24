@@ -3,8 +3,13 @@ import { SpreadSheetProvider } from 'providers/spreadsheet.provider';
 import { SpreadSheetTransformer } from 'transformers/spreadsheet.transformer';
 
 export default class SpreadSheetService {
-  public onFilePicked(data: any, setSpreadsheet: (data: Spreadsheet) => void) {
+  public onFilePicked(
+    driveStatusChanged: (status: any) => void,
+    data: any,
+    setSpreadsheet: (data: Spreadsheet) => void,
+  ) {
     return new Promise((resolve, reject) => {
+      driveStatusChanged(data.action);
       if (data.docs && data.docs[0]) {
         new SpreadSheetProvider()
           .provide(data.docs[0].id)

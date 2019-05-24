@@ -1,9 +1,10 @@
 import { Button, Grid, Theme } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import StorageIcon from '@material-ui/icons/Storage';
 import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
 import { StepCtx } from 'contexts/step.context';
 import { useStyles } from 'hooks/useStyles';
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useState } from 'react';
 // @ts-ignore
 import GooglePicker from 'react-google-picker';
 import SpreadSheetService from 'services/spreadsheet.service';
@@ -33,14 +34,26 @@ const styles = (theme: Theme) => ({
 const DrivePicker = () => {
   const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
   const [step, setStep] = useContext(StepCtx);
+  const [isDocLoading, setIsDocLoading] = useState(false);
   const classes = useStyles(styles);
   const service = new SpreadSheetService();
+  const pickerStatus = {
+    LOADED : 'loaded',
+    PICKED : 'picked'
+  };
 
   const onChange = async (data: any) => {
-    const result = await service.onFilePicked(data, setSpreadsheet);
+    const result = await service.onFilePicked(driveStatusChanged, data, setSpreadsheet);
     if (result) {
+      setIsDocLoading(false);
       const currentStep = { ...step, isBlocked: false };
       setStep(currentStep);
+    }
+  };
+
+  const driveStatusChanged = (status: any) => {
+    if (status === pickerStatus.PICKED) {
+      setIsDocLoading(true);
     }
   };
 
@@ -60,10 +73,11 @@ const DrivePicker = () => {
         onChange={onChange}
         onAuthFailed={pickerOnAuthFailed}
       >
-        <Button variant="contained" size="large">
+        { !isDocLoading ? <Button variant="contained" size="large">
           <StorageIcon className={classes.storageIcon} />
           Select File
-        </Button>
+        </Button> : null }
+        { isDocLoading ? <CircularProgress /> : null }
       </GooglePicker>
       {renderEmbed()}
     </Grid>

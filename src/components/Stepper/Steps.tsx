@@ -4,7 +4,7 @@ import Stepper from '@material-ui/core/Stepper';
 import { getStep } from 'const/steps';
 import { MailTemplateCtx } from 'context/mail-template';
 import { SpreadsheetCtx } from 'context/spreadsheet';
-import { StepCtx } from 'context/step.context';
+import { StepCtx } from 'context/step';
 import { useStyles } from 'hooks/useStyles';
 import { Step } from 'models';
 import React, { memo, useState } from 'react';

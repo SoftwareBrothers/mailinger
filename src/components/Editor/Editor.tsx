@@ -2,6 +2,7 @@ import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { replaceVars } from 'components/utils';
 import { MailTemplateCtx } from 'contexts/mail-template.context';
+import { SheetCtx } from 'contexts/sheet.context';
 import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
 import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
@@ -21,11 +22,13 @@ const styles = (theme: Theme) => ({
 const Editor = () => {
   const [mailTemplate, setMailTemplate] = useContext(MailTemplateCtx);
   const { spreadsheet } = useContext(SpreadsheetCtx);
+  const { sheet } = useContext(SheetCtx);
+  console.log('------- EDITOR! sheet:', sheet);
   const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );
   const [preview, setPreview] = useState(
-    replaceVars(mailTemplate, spreadsheet.usersData[0]),
+    replaceVars(mailTemplate, sheet),
   );
   const classes = useStyles(styles);
 
@@ -35,7 +38,7 @@ const Editor = () => {
     setPreview(
       replaceVars(
         stateToHTML(data.getCurrentContent()),
-        spreadsheet.usersData[0],
+        sheet,
       ),
     );
   };

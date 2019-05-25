@@ -5,7 +5,7 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
-import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
+import { SheetCtx } from 'contexts/sheet.context';
 import { useStyles } from 'hooks/useStyles';
 import React, { useContext } from 'react';
 
@@ -17,27 +17,27 @@ const styles = {
 
 const Recipients = () => {
   const classes = useStyles(styles);
-  const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
+  const { sheet, setSheet } = useContext(SheetCtx);
 
   function onChange(
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) {
-    const index = spreadsheet.usersData.findIndex(
+    const index = sheet.usersData.findIndex(
       (data: any) => data.email === event.target.value,
     );
-    const data = Object.assign({}, spreadsheet);
+    const data = Object.assign({}, sheet);
     data.usersData[index].send = checked;
-    setSpreadsheet(data);
+    setSheet(data);
   }
 
-  if (spreadsheet) {
+  if (sheet) {
     return (
       <Grid container={true}>
         <Grid item={true} md={3} />
         <Grid item={true} xs={12} md={6} className={classes.center}>
           <List>
-            {spreadsheet.usersData.map((userData: any) => (
+            {sheet.usersData.map((userData: any) => (
               <ListItem
                 key={userData.email}
                 role={undefined}

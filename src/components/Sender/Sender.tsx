@@ -1,7 +1,7 @@
 import { Button, Grid, TextField } from '@material-ui/core';
 import { replaceVars } from 'components/utils';
 import { MailTemplateCtx } from 'contexts/mail-template.context';
-import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
+import { SheetCtx } from 'contexts/sheet.context';
 import { UserCtx } from 'contexts/user.context';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext, useState } from 'react';
@@ -20,11 +20,11 @@ const styles = {
 
 const Sender = () => {
   const [mailTemplate] = useContext(MailTemplateCtx);
-  const { spreadsheet } = useContext(SpreadsheetCtx);
+  const { sheet } = useContext(SheetCtx);
   const { user } = useContext(UserCtx);
   const [subject, setSubject] = useState('Proszę o wystawienie Faktury');
   const classes = useStyles(styles);
-  const recipients = spreadsheet.usersData.filter((data: any) => data.send);
+  const recipients = sheet.usersData.filter((data: any) => data.send);
   const dataToSend = recipients.map((userData: any) => {
     if (userData.send) {
       return {

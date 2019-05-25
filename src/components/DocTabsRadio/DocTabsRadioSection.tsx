@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import React, { memo, useContext } from 'react';
 import { SheetCtx } from '../../contexts/sheet.context';
-import { Spreadsheet } from '../../models';
+import { Sheet, Spreadsheet } from '../../models';
 import { getSheetByTitle } from '../../utils/spreadsheet';
 
 interface OwnProps {
@@ -17,15 +17,26 @@ type Props = OwnProps;
 
 const DocTabsRadioSection = ({spreadsheet} : Props) => {
   const {sheet, setSheet} = useContext(SheetCtx);
-  setSheet(spreadsheet.sheets[2]);
-  console.log("title", spreadsheet.sheets[0].title);
+  const initSheet = sheet ? sheet : spreadsheet.sheets[0];
+  setSheet(initSheet);
+
+  const assignNewSheet = (sheetToAssign: Sheet) => {
+    const newSheet = Object.assign({}, sheet);
+    newSheet.title = sheetToAssign.title;
+    newSheet.usersData = sheetToAssign.usersData;
+    newSheet.variables = sheetToAssign.variables;
+    setSheet(newSheet);
+  };
 
   const onRadioChange = (event: any) => {
     const sheetTitle = event.target.value;
     const sheetSelected = getSheetByTitle(spreadsheet, sheetTitle);
-    console.log('setting sheet:', sheetSelected);
-    setSheet(spreadsheet.sheets[1]);
-    console.log('context sheet:', sheet);
+
+    if (!sheetSelected) {
+      return;
+    }
+
+    assignNewSheet(sheetSelected);
   };
 
   return (

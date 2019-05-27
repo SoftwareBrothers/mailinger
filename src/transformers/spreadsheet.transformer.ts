@@ -3,7 +3,7 @@ import { Sheet, Spreadsheet } from 'models';
 export class SpreadSheetTransformer {
 
   public transform(data: any): Spreadsheet {
-    const transformedSheets = new Array();
+    const transformedSheets = [];
     const sheets = data.sheets;
     for (const sheet of sheets) {
       const transformedSheet = this.transformSheet(sheet);

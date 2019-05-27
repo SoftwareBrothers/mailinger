@@ -6,9 +6,9 @@ import {
   RadioGroup
 } from '@material-ui/core';
 import React, { memo, useContext } from 'react';
-import { SheetCtx } from '../../contexts/sheet.context';
-import { Sheet, Spreadsheet } from '../../models';
-import { getSheetByTitle } from '../../utils/spreadsheet';
+import { SheetCtx } from 'contexts/sheet.context';
+import { Sheet, Spreadsheet } from 'models';
+import { getSheetByTitle } from 'utils/spreadsheet';
 
 interface OwnProps {
   readonly spreadsheet: Spreadsheet;

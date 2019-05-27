@@ -84,7 +84,7 @@ const DrivePicker = () => {
       </GooglePicker>
       {renderEmbed()}
 
-      { spreadsheet && spreadsheet.sheets ? <DocTabsRadioSection spreadsheet={spreadsheet}/> : null }
+      { spreadsheet && spreadsheet.sheets && <DocTabsRadioSection spreadsheet={spreadsheet}/> }
 
     </Grid>
   );

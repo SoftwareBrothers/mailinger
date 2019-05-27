@@ -21,10 +21,11 @@ const DocTabsRadioSection = ({spreadsheet} : Props) => {
   setSheet(initSheet);
 
   const assignNewSheet = (sheetToAssign: Sheet) => {
-    const newSheet = Object.assign({}, sheet);
-    newSheet.title = sheetToAssign.title;
-    newSheet.usersData = sheetToAssign.usersData;
-    newSheet.variables = sheetToAssign.variables;
+    const newSheet = {...sheet,
+      title: sheetToAssign.title,
+      usersData: sheetToAssign.usersData,
+      variables: sheetToAssign.variables
+    };
     setSheet(newSheet);
   };
 

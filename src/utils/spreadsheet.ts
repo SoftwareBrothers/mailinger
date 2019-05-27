@@ -4,14 +4,7 @@ const getSheetByTitle = (spreadsheet: Spreadsheet, title: string): Nullable<Shee
   if (!spreadsheet || !spreadsheet.sheets) {
     return null;
   }
-
-  for (const sheet of spreadsheet.sheets) {
-    if (sheet.title === title) {
-      return sheet;
-    }
-  }
-
-  return null;
+  return spreadsheet.sheets.find((sheet: Sheet) => title === sheet.title) || null;
 };
 
 export { getSheetByTitle };

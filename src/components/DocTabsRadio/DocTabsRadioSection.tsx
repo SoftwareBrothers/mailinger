@@ -29,8 +29,8 @@ const DocTabsRadioSection = ({spreadsheet} : Props) => {
     setSheet(newSheet);
   };
 
-  const onRadioChange = (event: any) => {
-    const sheetTitle = event.target.value;
+  const onRadioChange = (event: React.ChangeEvent<unknown>) => {
+    const sheetTitle = (event.target as HTMLInputElement).value;
     const sheetSelected = getSheetByTitle(spreadsheet, sheetTitle);
 
     if (!sheetSelected) {

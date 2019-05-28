@@ -3,28 +3,30 @@ import {
   FormControlLabel,
   FormLabel,
   Radio,
-  RadioGroup
+  RadioGroup,
 } from '@material-ui/core';
-import React, { memo, useContext } from 'react';
 import { SheetCtx } from 'contexts/sheet.context';
 import { Sheet, Spreadsheet } from 'models';
+import React, { memo, useContext } from 'react';
 import { getSheetByTitle } from 'utils/spreadsheet';
 
 interface OwnProps {
   readonly spreadsheet: Spreadsheet;
-};
+}
+
 type Props = OwnProps;
 
-const DocTabsRadioSection = ({spreadsheet} : Props) => {
-  const {sheet, setSheet} = useContext(SheetCtx);
+const DocTabsRadioSection = ({ spreadsheet }: Props) => {
+  const { sheet, setSheet } = useContext(SheetCtx);
   const initSheet = sheet ? sheet : spreadsheet.sheets[0];
   setSheet(initSheet);
 
   const assignNewSheet = (sheetToAssign: Sheet) => {
-    const newSheet = {...sheet,
+    const newSheet = {
+      ...sheet,
       title: sheetToAssign.title,
       usersData: sheetToAssign.usersData,
-      variables: sheetToAssign.variables
+      variables: sheetToAssign.variables,
     };
     setSheet(newSheet);
   };
@@ -49,7 +51,14 @@ const DocTabsRadioSection = ({spreadsheet} : Props) => {
         value={sheet ? sheet.title : spreadsheet.sheets[0].title}
         onChange={onRadioChange}
       >
-        {spreadsheet.sheets.map((tab) => <FormControlLabel key={tab.title} value={tab.title} control={<Radio />} label={tab.title} />)}
+        {spreadsheet.sheets.map(tab => (
+          <FormControlLabel
+            key={tab.title}
+            value={tab.title}
+            control={<Radio />}
+            label={tab.title}
+          />
+        ))}
       </RadioGroup>
     </FormControl>
   );

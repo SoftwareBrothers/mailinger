@@ -24,20 +24,13 @@ const Editor = () => {
   const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );
-  const [preview, setPreview] = useState(
-    replaceVars(mailTemplate, sheet),
-  );
+  const [preview, setPreview] = useState(replaceVars(mailTemplate, sheet));
   const classes = useStyles(styles);
 
   const onChange = (data: any) => {
     setEditor(data);
     setMailTemplate(stateToHTML(data.getCurrentContent()));
-    setPreview(
-      replaceVars(
-        stateToHTML(data.getCurrentContent()),
-        sheet,
-      ),
-    );
+    setPreview(replaceVars(stateToHTML(data.getCurrentContent()), sheet));
   };
 
   const options = ['fontSize', 'fontFamily', 'list', 'textAlign'];

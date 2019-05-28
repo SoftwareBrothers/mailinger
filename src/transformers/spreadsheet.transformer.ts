@@ -1,7 +1,6 @@
 import { Sheet, Spreadsheet } from 'models';
 
 export class SpreadSheetTransformer {
-
   public transform(data: any): Spreadsheet {
     const transformedSheets = [];
     const sheets = data.sheets;
@@ -11,10 +10,9 @@ export class SpreadSheetTransformer {
     }
 
     return {
-      sheets: transformedSheets
+      sheets: transformedSheets,
     };
   }
-
 
   private transformSheet(sheet: any): Sheet {
     const arrayLike = sheet.data[0].rowData.map((row: any) => {
@@ -45,7 +43,7 @@ export class SpreadSheetTransformer {
     return {
       title: sheet.properties.title,
       usersData: usersWithVars,
-      variables: ['title'].concat(variables)
+      variables: ['title'].concat(variables),
     };
   }
 

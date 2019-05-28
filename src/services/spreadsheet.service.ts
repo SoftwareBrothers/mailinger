@@ -16,7 +16,7 @@ export default class SpreadSheetService {
           .provide(data.docs[0].id)
           .then(response => {
             const transformed = new SpreadSheetTransformer().transform(
-              response.data
+              response.data,
             );
             transformed.embedUrl = data.docs[0].embedUrl;
             setSpreadsheet(transformed);

@@ -1,7 +1,8 @@
+import { EmailData } from 'context/email';
 import { Base64 } from 'js-base64';
-import { Recipient, User } from 'models';
+import { User } from 'models';
 
-export default (recipient: Recipient, user: User) => {
+export default (recipient: EmailData, user: User) => {
   const messageId = new Date().getUTCMilliseconds();
   const userFullName = user.firstName + ' ' + user.lastName;
   const { firstName = '', lastName = '' } = recipient;
@@ -12,12 +13,12 @@ export default (recipient: Recipient, user: User) => {
   };
 
   return `From: ${encode(userFullName)} <${user.email}>
-To: ${encode(recipientFullName)} <${recipient.email}>
+To: ${encode(recipientFullName)} <${recipient.recipient}>
 Reply-To: <${user.email}>
 Message-ID: ${messageId}
 Date: ${messageId}
-Subject: ${encode(recipient.data.subject)}
+Subject: ${encode(recipient.title)}
 Content-Type: text/html; charset="UTF-8"
 
-${recipient.data.content}`;
+${recipient.content}`;
 };

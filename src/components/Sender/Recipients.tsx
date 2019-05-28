@@ -29,9 +29,7 @@ const Recipients = () => {
       active: checked,
     };
 
-    const dd = [...data.slice(0, index), item, ...data.slice(index + 1)];
-
-    setEmails(dd);
+    setEmails([...data.slice(0, index), item, ...data.slice(index + 1)]);
   };
 
   const onClick = (index: number) => () => {

@@ -1,11 +1,12 @@
+import { Grid } from '@material-ui/core';
 import MUIStep from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
 import { getStep } from 'const/steps';
-import { MailTemplateCtx } from 'contexts/mail-template.context';
-import { SheetCtx } from 'contexts/sheet.context';
-import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
-import { StepCtx } from 'contexts/step.context';
+import { EmailCtx, EmailData} from 'context/email';
+import { MailTemplateCtx } from 'context/mail-template';
+import { SpreadsheetCtx } from 'context/spreadsheet';
+import { StepCtx } from 'context/step';
 import { useStyles } from 'hooks/useStyles';
 import { Step } from 'models';
 import React, { memo, useState } from 'react';
@@ -21,8 +22,8 @@ const styles = {
 const Steps = () => {
   const [activeStep, setActiveStep] = useState<Step | null>(getStep(0));
   const [spreadsheet, setSpreadsheet] = useState(null);
-  const [sheet, setSheet] = useState(null);
   const [mailTemplate, setMailTemplate] = useState<string>(mailContent);
+  const [emails, setEmails] = useState<EmailData[]>([]);
   const classes = useStyles(styles);
 
   const steps = [
@@ -37,26 +38,31 @@ const Steps = () => {
 
   return (
     <SpreadsheetCtx.Provider value={{ spreadsheet, setSpreadsheet }}>
-      <SheetCtx.Provider value={{ sheet, setSheet }}>
-        <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
-          <StepCtx.Provider value={[activeStep, setActiveStep]}>
-            <Stepper
-              className={classes.stepper}
-              alternativeLabel={true}
-              nonLinear={true}
-              activeStep={(activeStep && activeStep.number) || undefined}
-            >
-              {steps.map(step => (
-                <MUIStep key={step.key}>
-                  <StepButton>{step.label}</StepButton>
-                </MUIStep>
-              ))}
-            </Stepper>
-            {getComponent()}
+      <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
+        <StepCtx.Provider value={[activeStep, setActiveStep]}>
+          <EmailCtx.Provider value={{ data: emails, setEmails }}>
+            <Grid container={true} alignItems={'center'} justify={'center'}>
+              <Grid item={true} xs={8}>
+                <Stepper
+                  className={classes.stepper}
+                  alternativeLabel={false}
+                  nonLinear={false}
+                  activeStep={(activeStep && activeStep.number) || undefined}
+                >
+                  {steps.map(step => (
+                    <MUIStep key={step.key}>
+                      <StepButton>{step.label}</StepButton>
+                    </MUIStep>
+                  ))}
+                </Stepper>
+                {getComponent()}
+              </Grid>
+            </Grid>
+
             <Navigation />
-          </StepCtx.Provider>
-        </MailTemplateCtx.Provider>
-      </SheetCtx.Provider>
+          </EmailCtx.Provider>
+        </StepCtx.Provider>
+      </MailTemplateCtx.Provider>
     </SpreadsheetCtx.Provider>
   );
 };

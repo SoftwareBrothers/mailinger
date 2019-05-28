@@ -1,12 +1,13 @@
 import { Button, Grid, TextField } from '@material-ui/core';
+import Recipients from 'components/Sender/Recipients';
 import { replaceVars } from 'components/utils';
-import { MailTemplateCtx } from 'contexts/mail-template.context';
-import { SheetCtx } from 'contexts/sheet.context';
-import { UserCtx } from 'contexts/user.context';
+import { EmailCtx, EmailData } from 'context/email';
+import { MailTemplateCtx } from 'context/mail-template';
+import { SpreadsheetCtx } from 'context/spreadsheet';
+import { UserCtx } from 'context/user';
 import { useStyles } from 'hooks/useStyles';
-import React, { memo, useContext, useState } from 'react';
+import React, { memo, useContext, useEffect, useMemo, useState } from 'react';
 import send from 'services/MailSender';
-import Recipients from './Recipients';
 
 const styles = {
   center: {
@@ -14,39 +15,70 @@ const styles = {
   },
   searchInput: {
     margin: 'auto',
-    width: '90%',
   },
 };
 
-const Sender = () => {
-  const [mailTemplate] = useContext(MailTemplateCtx);
-  const { sheet } = useContext(SheetCtx);
-  const { user } = useContext(UserCtx);
-  const [subject, setSubject] = useState('Proszę o wystawienie Faktury');
-  const classes = useStyles(styles);
-  const recipients = sheet.usersData.filter((data: any) => data.send);
-  const dataToSend = recipients.map((userData: any) => {
+const prepareEmails = (
+  recipients: any,
+  mailTemplate: string,
+  subject: string,
+) => {
+  const prepared: EmailData = recipients.map((userData: any) => {
     if (userData.send) {
       return {
-        data: {
-          content: replaceVars(mailTemplate, userData),
-          subject,
-        },
-        email: userData.email,
+        active: true,
+        content: replaceVars(mailTemplate, userData),
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        recipient: userData.email,
+        status: 0,
+        title: subject,
       };
     }
     return;
   });
 
+  return prepared;
+};
+
+const Sender = () => {
+  const [mailTemplate] = useContext(MailTemplateCtx);
+  const { spreadsheet } = useContext(SpreadsheetCtx);
+  const { data, setEmails } = useContext(EmailCtx);
+  const { user } = useContext(UserCtx);
+  const [subject, setSubject] = useState('Proszę o wystawienie Faktury');
+  const classes = useStyles(styles);
+  const recipients = spreadsheet.usersData.filter(
+    (spreadsheetUserData: any) => spreadsheetUserData.send,
+  );
+
+  const update = (item: EmailData) => {
+    const index = data.indexOf(item);
+
+    if (index < 0) {
+      return;
+    }
+
+    setEmails([...data.slice(0, index), item, ...data.slice(index + 1)]);
+  };
+
   const sendEmails = () => {
     if (user !== undefined) {
-      send(dataToSend, user);
+      send(data.filter((item: EmailData) => item.active), user, update);
     }
   };
 
   const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSubject(event.target.value);
   };
+
+  const prep = useMemo(() => prepareEmails(recipients, mailTemplate, subject), [
+    spreadsheet,
+  ]);
+
+  useEffect(() => {
+    setEmails(prep);
+  }, []);
 
   return (
     <Grid item={true} xs={12} className={classes.center}>
@@ -55,17 +87,13 @@ const Sender = () => {
         label="Email Title"
         type="search"
         margin="normal"
+        fullWidth={true}
         className={classes.searchInput}
         value={subject}
         onChange={changeTitle}
       />
-      <Recipients />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={sendEmails}
-        // disabled={!recipients.length}
-      >
+      <Recipients/>
+      <Button variant="contained" color="primary" onClick={sendEmails}>
         Send
       </Button>
     </Grid>

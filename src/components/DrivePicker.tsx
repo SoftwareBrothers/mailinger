@@ -32,10 +32,10 @@ const styles = (theme: Theme) => ({
   },
 });
 
-export enum DriveState{
-  READY  = 'ready',
-  LOADING = 'picked'
-};
+export enum DriveState {
+  READY = 'ready',
+  LOADING = 'picked',
+}
 
 const DrivePicker = () => {
   const { spreadsheet, setSpreadsheet } = useContext(SpreadsheetCtx);
@@ -84,8 +84,9 @@ const DrivePicker = () => {
       </GooglePicker>
       {renderEmbed()}
 
-      { spreadsheet && spreadsheet.sheets && <DocTabsRadioSection spreadsheet={spreadsheet}/> }
-
+      {spreadsheet && spreadsheet.sheets && (
+        <DocTabsRadioSection spreadsheet={spreadsheet} />
+      )}
     </Grid>
   );
 };

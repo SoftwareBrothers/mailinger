@@ -1,4 +1,4 @@
-import {UserToken} from "./UserToken";
+import { UserToken } from './UserToken';
 
 export interface User {
   email: string;

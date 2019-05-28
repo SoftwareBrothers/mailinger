@@ -1,5 +1,6 @@
+import { Sheet } from './Sheet';
+
 export interface Spreadsheet {
-  variables: string[];
-  usersData: [{ [key: string]: any }];
+  sheets: Sheet[];
   embedUrl?: string;
 }

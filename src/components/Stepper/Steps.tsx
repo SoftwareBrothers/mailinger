@@ -3,6 +3,7 @@ import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
 import { getStep } from 'const/steps';
 import { MailTemplateCtx } from 'contexts/mail-template.context';
+import { SheetCtx } from 'contexts/sheet.context';
 import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
 import { StepCtx } from 'contexts/step.context';
 import { useStyles } from 'hooks/useStyles';
@@ -20,6 +21,7 @@ const styles = {
 const Steps = () => {
   const [activeStep, setActiveStep] = useState<Step | null>(getStep(0));
   const [spreadsheet, setSpreadsheet] = useState(null);
+  const [sheet, setSheet] = useState(null);
   const [mailTemplate, setMailTemplate] = useState<string>(mailContent);
   const classes = useStyles(styles);
 
@@ -35,24 +37,26 @@ const Steps = () => {
 
   return (
     <SpreadsheetCtx.Provider value={{ spreadsheet, setSpreadsheet }}>
-      <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
-        <StepCtx.Provider value={[activeStep, setActiveStep]}>
-          <Stepper
-            className={classes.stepper}
-            alternativeLabel={true}
-            nonLinear={true}
-            activeStep={(activeStep && activeStep.number) || undefined}
-          >
-            {steps.map(step => (
-              <MUIStep key={step.key}>
-                <StepButton>{step.label}</StepButton>
-              </MUIStep>
-            ))}
-          </Stepper>
-          {getComponent()}
-          <Navigation />
-        </StepCtx.Provider>
-      </MailTemplateCtx.Provider>
+      <SheetCtx.Provider value={{ sheet, setSheet }}>
+        <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
+          <StepCtx.Provider value={[activeStep, setActiveStep]}>
+            <Stepper
+              className={classes.stepper}
+              alternativeLabel={true}
+              nonLinear={true}
+              activeStep={(activeStep && activeStep.number) || undefined}
+            >
+              {steps.map(step => (
+                <MUIStep key={step.key}>
+                  <StepButton>{step.label}</StepButton>
+                </MUIStep>
+              ))}
+            </Stepper>
+            {getComponent()}
+            <Navigation />
+          </StepCtx.Provider>
+        </MailTemplateCtx.Provider>
+      </SheetCtx.Provider>
     </SpreadsheetCtx.Provider>
   );
 };

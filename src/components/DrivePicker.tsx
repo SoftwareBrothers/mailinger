@@ -82,11 +82,15 @@ const DrivePicker = () => {
           </Button>
         )}
       </GooglePicker>
+
       {renderEmbed()}
 
       {spreadsheet && spreadsheet.sheets && (
-        <DocTabsRadioSection spreadsheet={spreadsheet} />
+        <div>
+          <DocTabsRadioSection spreadsheet={spreadsheet} />
+        </div>
       )}
+
     </Grid>
   );
 };

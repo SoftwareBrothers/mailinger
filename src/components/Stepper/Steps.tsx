@@ -1,8 +1,9 @@
+import { Grid } from '@material-ui/core';
 import MUIStep from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Stepper from '@material-ui/core/Stepper';
 import { getStep } from 'const/steps';
-import { EmailCtx, EmailData} from 'context/email';
+import { EmailCtx, EmailData } from 'context/email';
 import { MailTemplateCtx } from 'context/mail-template';
 import { SheetCtx } from 'context/sheet';
 import { SpreadsheetCtx } from 'context/spreadsheet';
@@ -43,20 +44,23 @@ const Steps = () => {
         <MailTemplateCtx.Provider value={[mailTemplate, setMailTemplate]}>
           <EmailCtx.Provider value={{ data: emails, setEmails }}>
             <StepCtx.Provider value={[activeStep, setActiveStep]}>
-              <Stepper
-                className={classes.stepper}
-                alternativeLabel={true}
-                nonLinear={true}
-                activeStep={(activeStep && activeStep.number) || undefined}
-              >
-                {steps.map(step => (
-                  <MUIStep key={step.key}>
-                    <StepButton>{step.label}</StepButton>
-                  </MUIStep>
-                ))}
-              </Stepper>
-              {getComponent()}
-              <Navigation />
+              <Grid container={true} justify={'center'}>
+                <Grid item={true} xs={8}>
+                  <Stepper
+                    className={classes.stepper}
+                    nonLinear={true}
+                    activeStep={(activeStep && activeStep.number) || undefined}
+                  >
+                    {steps.map(step => (
+                      <MUIStep key={step.key}>
+                        <StepButton>{step.label}</StepButton>
+                      </MUIStep>
+                    ))}
+                  </Stepper>
+                  {getComponent()}
+                  <Navigation />
+                </Grid>
+              </Grid>
             </StepCtx.Provider>
           </EmailCtx.Provider>
         </MailTemplateCtx.Provider>

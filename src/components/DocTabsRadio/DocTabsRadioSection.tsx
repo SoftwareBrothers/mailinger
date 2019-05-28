@@ -43,9 +43,10 @@ const DocTabsRadioSection = ({ spreadsheet }: Props) => {
   };
 
   return (
-    <FormControl component="fieldset">
+    <FormControl component="div">
       <FormLabel component="legend">Tab to export</FormLabel>
       <RadioGroup
+        row={true}
         aria-label="Sheets"
         name="Sheets"
         value={sheet ? sheet.title : spreadsheet.sheets[0].title}

@@ -5,7 +5,7 @@ import {
   Radio,
   RadioGroup,
 } from '@material-ui/core';
-import { SheetCtx } from 'contexts/sheet.context';
+import { SheetCtx } from 'context/sheet';
 import { Sheet, Spreadsheet } from 'models';
 import React, { memo, useContext } from 'react';
 import { getSheetByTitle } from 'utils/spreadsheet';

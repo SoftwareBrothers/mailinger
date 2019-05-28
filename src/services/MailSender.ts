@@ -15,11 +15,9 @@ const send = (recipients: EmailData[], user: User, updater: any) => {
       client
         .post('/gmail/v1/users/me/messages/send', { raw: data })
         .then(res => {
-          console.log(res);
           setStatus(recipient, EmailStatus.SENT, updater);
         })
         .catch(error => {
-          console.log(error);
           setStatus(recipient, EmailStatus.ERROR, updater);
         });
     }

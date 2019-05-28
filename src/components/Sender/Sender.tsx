@@ -3,7 +3,7 @@ import Recipients from 'components/Sender/Recipients';
 import { replaceVars } from 'components/utils';
 import { EmailCtx, EmailData } from 'context/email';
 import { MailTemplateCtx } from 'context/mail-template';
-import { SpreadsheetCtx } from 'context/spreadsheet';
+import { SheetCtx } from 'context/sheet';
 import { UserCtx } from 'context/user';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext, useEffect, useMemo, useState } from 'react';
@@ -43,12 +43,12 @@ const prepareEmails = (
 
 const Sender = () => {
   const [mailTemplate] = useContext(MailTemplateCtx);
-  const { spreadsheet } = useContext(SpreadsheetCtx);
+  const { sheet } = useContext(SheetCtx);
   const { data, setEmails } = useContext(EmailCtx);
   const { user } = useContext(UserCtx);
   const [subject, setSubject] = useState('Proszę o wystawienie Faktury');
   const classes = useStyles(styles);
-  const recipients = spreadsheet.usersData.filter(
+  const recipients = sheet.usersData.filter(
     (spreadsheetUserData: any) => spreadsheetUserData.send,
   );
 
@@ -73,7 +73,7 @@ const Sender = () => {
   };
 
   const prep = useMemo(() => prepareEmails(recipients, mailTemplate, subject), [
-    spreadsheet,
+    sheet,
   ]);
 
   useEffect(() => {

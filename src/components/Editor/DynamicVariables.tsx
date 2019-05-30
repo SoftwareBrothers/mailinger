@@ -2,6 +2,7 @@ import { Theme } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { SheetCtx } from 'context/sheet';
 import { SpreadsheetCtx } from 'context/spreadsheet';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext } from 'react';
@@ -19,9 +20,9 @@ const styles = (theme: Theme) => ({
 });
 
 const DynamicVariables = () => {
-  const { spreadsheet } = useContext(SpreadsheetCtx);
+  const { sheet } = useContext(SheetCtx);
   const classes = useStyles(styles);
-  const variables: string[] = (spreadsheet && spreadsheet.variables) || [];
+  const variables: string[] = (sheet && sheet.variables) || [];
 
   if (!variables.length) {
     return null;

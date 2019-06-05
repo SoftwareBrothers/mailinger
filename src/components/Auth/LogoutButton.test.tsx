@@ -1,5 +1,5 @@
+import { cleanup, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { cleanup, fireEvent } from 'react-testing-library';
 import { contextRender } from 'utils/testing';
 import LogoutButton from './LogoutButton';
 

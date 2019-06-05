@@ -1,5 +1,5 @@
 import { cleanup } from '@testing-library/react';
-import { UserContext } from 'contexts/user.context';
+import { UserContext } from 'context/user';
 import { User } from 'models';
 import React from 'react';
 import { contextRender } from 'utils/testing';

@@ -1,6 +1,6 @@
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { render } from '@testing-library/react';
-import { UserContext, UserCtx } from 'contexts/user.context';
+import { UserContext, UserCtx } from 'context/user';
 import React, { ReactElement } from 'react';
 import theme from 'theme/theme';
 

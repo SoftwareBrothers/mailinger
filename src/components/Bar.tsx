@@ -2,7 +2,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import LogoutButton from 'components/Auth/LogoutButton';
-import { UserCtx } from 'contexts/user.context';
+import { UserCtx } from 'context/user';
 import { useStyles } from 'hooks/useStyles';
 import React, { FunctionComponent, memo, useContext } from 'react';
 import Login from './Auth/Login';

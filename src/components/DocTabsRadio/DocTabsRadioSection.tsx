@@ -5,7 +5,7 @@ import {
   Radio,
   RadioGroup,
 } from '@material-ui/core';
-import { SheetCtx } from 'contexts/sheet.context';
+import { SheetCtx } from 'context/sheet';
 import { Sheet, Spreadsheet } from 'models';
 import React, { memo, useContext } from 'react';
 import { getSheetByTitle } from 'utils/spreadsheet';
@@ -43,9 +43,10 @@ const DocTabsRadioSection = ({ spreadsheet }: Props) => {
   };
 
   return (
-    <FormControl component="fieldset">
+    <FormControl component="div">
       <FormLabel component="legend">Tab to export</FormLabel>
       <RadioGroup
+        row={true}
         aria-label="Sheets"
         name="Sheets"
         value={sheet ? sheet.title : spreadsheet.sheets[0].title}

@@ -1,8 +1,7 @@
 import { Theme } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 import { replaceVars } from 'components/utils';
-import { MailTemplateCtx } from 'contexts/mail-template.context';
-import { SheetCtx } from 'contexts/sheet.context';
+import { MailTemplateCtx } from 'context/mail-template';
+import { SheetCtx } from 'context/sheet';
 import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
@@ -24,29 +23,31 @@ const Editor = () => {
   const [editor, setEditor] = useState(
     EditorState.createWithContent(stateFromHTML(mailTemplate)),
   );
-  const [preview, setPreview] = useState(replaceVars(mailTemplate, sheet));
+  const [preview, setPreview] = useState(
+    replaceVars(mailTemplate, sheet.usersData[0]),
+  );
   const classes = useStyles(styles);
 
   const onChange = (data: any) => {
     setEditor(data);
     setMailTemplate(stateToHTML(data.getCurrentContent()));
-    setPreview(replaceVars(stateToHTML(data.getCurrentContent()), sheet));
+    setPreview(
+      replaceVars(stateToHTML(data.getCurrentContent()), sheet.usersData[0]),
+    );
   };
 
   const options = ['fontSize', 'fontFamily', 'list', 'textAlign'];
 
   return (
     <div className={classes.root}>
-      <Grid>
-        <DynamicVariables />
-        <Wysiwyg
-          editorState={editor}
-          onEditorStateChange={onChange}
-          toolbar={{
-            options,
-          }}
-        />
-      </Grid>
+      <DynamicVariables />
+      <Wysiwyg
+        editorState={editor}
+        onEditorStateChange={onChange}
+        toolbar={{
+          options,
+        }}
+      />
       <h3>Preview</h3>
       <div dangerouslySetInnerHTML={{ __html: preview }} />
     </div>

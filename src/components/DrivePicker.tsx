@@ -1,8 +1,8 @@
 import { Button, Grid, Theme } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import StorageIcon from '@material-ui/icons/Storage';
-import { SpreadsheetCtx } from 'contexts/spreadsheet.context';
-import { StepCtx } from 'contexts/step.context';
+import { SpreadsheetCtx } from 'context/spreadsheet';
+import { StepCtx } from 'context/step';
 import { useStyles } from 'hooks/useStyles';
 import React, { memo, useContext, useState } from 'react';
 // @ts-ignore
@@ -82,11 +82,15 @@ const DrivePicker = () => {
           </Button>
         )}
       </GooglePicker>
+
       {renderEmbed()}
 
       {spreadsheet && spreadsheet.sheets && (
-        <DocTabsRadioSection spreadsheet={spreadsheet} />
+        <div>
+          <DocTabsRadioSection spreadsheet={spreadsheet} />
+        </div>
       )}
+
     </Grid>
   );
 };

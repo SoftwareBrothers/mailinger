@@ -11,11 +11,12 @@ Kwota [title], po uwzględnieniu potrącenia za:
 <br>
 - multisport [multisport]
 <br>
-- Potrącenie za chorobowe (od kwoty netto) [kwota_l4]
-<br>
+- zwolnienie chorobowe [kwota_l4]
 <br>
 wynosi [kwota_netto] netto / [brutto_po_potraceniach] brutto.
 <br>
 <br>
-Proszę o jak najszybsze wysłanie faktury
+Dodatkowo proszę o wysłanie UZUPEŁNIONEGO raportu z jiry z podziałem na projekty w formacie pdf za poprzedni miesiąc. Najlepiej jakby faktura i załącznik były w jednym mailu 😉
+<br>
+Czekam do jutra do godziny 12!
 `;

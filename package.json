@@ -17,7 +17,7 @@
     "js-base64": "^2.5.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-draft-wysiwyg": "^1.13.2",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-google-login": "^5.0.4",
     "react-google-picker": "^0.1.0",
     "react-scripts": "3.0.1",
